@@ -1,6 +1,6 @@
-@extends('layouts.app')
 
-@section('content')
+
+<?php $__env->startSection('content'); ?>
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <div class="container-fluid">
@@ -10,7 +10,7 @@
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-          <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
+          <li class="breadcrumb-item"><a href="<?php echo e(route('home')); ?>">Home</a></li>
           <li class="breadcrumb-item"><a href="#">Ruang</a></li>
           <li class="breadcrumb-item active">Data</li>
         </ol>
@@ -69,8 +69,8 @@
 </section>
 <!-- /.content -->
 
-@endsection
-@section('script')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('script'); ?>
 <!-- Page specific script -->
 <script>
     $(function () {
@@ -78,7 +78,7 @@
         "responsive": true, "lengthChange": false, "autoWidth": false,
         "processing": true,
         "serverSide": true,
-        "ajax": "{{ route('ruang.index') }}",
+        "ajax": "<?php echo e(route('ruang.index')); ?>",
         "columns": [
             {
                 data: 'DT_RowIndex',
@@ -108,4 +108,5 @@
       });
     });
   </script>
-  @endsection
+  <?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\rekam-medis\Web-Rekam-Medis\eHealth\resources\views/ruang.blade.php ENDPATH**/ ?>

@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\RekamMedis;
+use DataTables;
+use DB;
+use Hash;
 
 class RekamMedisController extends Controller
 {
@@ -12,9 +16,27 @@ class RekamMedisController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
+        if ($request->ajax()) {
+            $data = DB::table('rekam_medis')->get();
+			return Datatables::of($data)
+				->addIndexColumn()
+				->addColumn('action', function($row){
+					$btn = '
+							<div class="text-center">
+								<div class="btn-group">
+									<a href="#" class="edit btn btn-success btn-sm"> Edit </a>
+									<a href="#" class="btn btn-danger btn-sm"> Hapus </a>
+								</div>
+							</div>
+							';
+					return $btn;
+				})
+				->rawColumns(['action']) 
+				->make(true);
+		}
         return view('rekamMedis');
     }
 

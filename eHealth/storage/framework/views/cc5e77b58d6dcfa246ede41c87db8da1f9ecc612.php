@@ -6,12 +6,13 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1>DataTables</h1>
+        <h1>Rekam Medis</h1>
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-          <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active">DataTables</li>
+          <li class="breadcrumb-item"><a href="<?php echo e(route('home')); ?>">Home</a></li>
+          <li class="breadcrumb-item"><a href="#">Rekam Medis</a></li>
+          <li class="breadcrumb-item active">Data</li>
         </ol>
       </div>
     </div>
@@ -33,11 +34,12 @@
             <table id="example1" class="table table-bordered table-striped">
               <thead>
               <tr>
-                <th>Rendering engine</th>
-                <th>Browser</th>
-                <th>Platform(s)</th>
-                <th>Engine version</th>
-                <th>CSS grade</th>
+                <th>No</th>
+                <th>Tanggal</th>
+                <th>Pasien</th>
+                <th>Dokter</th>
+                <th>Jenis Pelayanan</th>
+                <th>Aksi</th>
               </tr>
               </thead>
               <tbody>
@@ -45,11 +47,12 @@
               </tbody>
               <tfoot>
               <tr>
-                <th>Rendering engine</th>
-                <th>Browser</th>
-                <th>Platform(s)</th>
-                <th>Engine version</th>
-                <th>CSS grade</th>
+                <th>No</th>
+                <th>Tanggal</th>
+                <th>Pasien</th>
+                <th>Dokter</th>
+                <th>Jenis Pelayanan</th>
+                <th>Aksi</th>
               </tr>
               </tfoot>
             </table>
@@ -73,16 +76,35 @@
     $(function () {
       $("#example1").DataTable({
         "responsive": true, "lengthChange": false, "autoWidth": false,
-        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-      $('#example2').DataTable({
-        "paging": true,
-        "lengthChange": false,
-        "searching": false,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false,
-        "responsive": true,
+        "processing": true,
+        "serverSide": true,
+        "ajax": "<?php echo e(route('rekamMedis.index')); ?>",
+        "columns": [
+            {
+                data: 'DT_RowIndex',
+                name: 'DT_RowIndex',
+            },
+            {
+                data: 'tgl_rekam',
+                name: 'tgl_rekam',
+            },
+            {
+                data: 'id_pasien',
+                name: 'id_pasien',
+            },
+            {
+                data: 'id_dokter',
+                name: 'id_dokter',
+            },
+            {
+                data: 'jenis_pelayanan',
+                name: 'jenis_pelayanan',
+            },
+            {
+                data: 'action',
+                name: 'action',
+            },
+        ]
       });
     });
   </script>

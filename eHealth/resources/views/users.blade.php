@@ -6,12 +6,13 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1>DataTables</h1>
+        <h1>User</h1>
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-          <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active">DataTables</li>
+          <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
+          <li class="breadcrumb-item"><a href="#">User</a></li>
+          <li class="breadcrumb-item active">Data</li>
         </ol>
       </div>
     </div>
@@ -33,11 +34,10 @@
             <table id="example1" class="table table-bordered table-striped">
               <thead>
               <tr>
-                <th>Rendering engine</th>
-                <th>Browser</th>
-                <th>Platform(s)</th>
-                <th>Engine version</th>
-                <th>CSS grade</th>
+                <th>No</th>
+                <th>Nama</th>
+                <th>Email</th>
+                <th>Aksi</th>
               </tr>
               </thead>
               <tbody>
@@ -45,11 +45,10 @@
               </tbody>
               <tfoot>
               <tr>
-                <th>Rendering engine</th>
-                <th>Browser</th>
-                <th>Platform(s)</th>
-                <th>Engine version</th>
-                <th>CSS grade</th>
+                <th>No</th>
+                <th>Nama</th>
+                <th>Email</th>
+                <th>Aksi</th>
               </tr>
               </tfoot>
             </table>
@@ -76,31 +75,19 @@
         "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
         "processing": true,
         "serverSide": true,
-        "ajax": "{{ route('student.data') }}",
+        "ajax": "{{ route('users.index') }}",
         "columns": [
             {
                 data: 'DT_RowIndex',
                 name: 'DT_RowIndex',
             },
             {
-                data: 'nim',
-                name: 'nim',
-            },
-            {
                 data: 'name',
                 name: 'name',
             },
             {
-                data: 'gender',
-                name: 'gender',
-            },
-            {
-                data: 'departement',
-                name: 'departement',
-            },
-            {
-                data: 'address',
-                name: 'address',
+                data: 'email',
+                name: 'email',
             },
             {
                 data: 'action',

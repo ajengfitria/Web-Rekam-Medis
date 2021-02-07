@@ -8,6 +8,7 @@ use App\User;
 use Spatie\Permission\Models\Role;
 use DB;
 use Hash;
+use DataTables;
 
 class UserController extends Controller
 {
@@ -18,9 +19,25 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $data = User::orderBy('id','DESC')->paginate(5);
-        return view('users',compact('data'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
+        if ($request->ajax()) {
+			$data = User::all();
+			return Datatables::of($data)
+				->addIndexColumn()
+				->addColumn('action', function($row){
+					$btn = '
+							<div class="text-center">
+								<div class="btn-group">
+									<a href="#" class="edit btn btn-success btn-sm"> Edit </a>
+									<a href="#" class="btn btn-danger btn-sm"> Hapus </a>
+								</div>
+							</div>
+							';
+					return $btn;
+				})
+				->rawColumns(['action']) 
+				->make(true);
+		}
+        return view('users');
     }
     
     /**

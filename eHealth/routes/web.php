@@ -29,5 +29,5 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('rekamMedis','RekamMedisController');
     Route::resource('obat','ObatController');
     Route::resource('kartuKes','KartuKesehatanController');
-    Route::resource('ruang','KartuKesehatanController');
+    Route::resource('ruang','RuangController');
 });
