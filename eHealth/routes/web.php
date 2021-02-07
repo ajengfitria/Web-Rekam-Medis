@@ -24,4 +24,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles','RoleController');
     Route::resource('users','UserController');
     Route::resource('products','ProductController');
+    Route::resource('dokter','DokterController');
+    Route::resource('pasien','PasienController');
+    Route::resource('rekamMedis','RekamMedisController');
+    Route::resource('obat','ObatController');
+    Route::resource('kartuKesehatan','KartuKesehatanController');
 });

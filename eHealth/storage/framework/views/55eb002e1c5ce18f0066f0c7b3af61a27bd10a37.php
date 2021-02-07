@@ -31,7 +31,7 @@
            with font-awesome or any other icon font library -->
            <li class="nav-header">Navigasi</li>
            <li class="nav-item">
-            <a href="{{route('home')}}" class="nav-link {{ Request::segment(1) === 'home' ? 'active' : null }}">
+            <a href="<?php echo e(route('home')); ?>" class="nav-link <?php echo e(Request::segment(1) === 'home' ? 'active' : null); ?>">
               <!-- <ion-icon name="home-outline"></ion-icon> -->
               <i class="nav-icon fas fa-home"></i>
               <p>
@@ -40,7 +40,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href=" {{route('dokter.index')}} " class="nav-link {{ Request::segment(1) === 'dokter' ? 'active' : null }}">
+            <a href=" <?php echo e(route('dokter.index')); ?> " class="nav-link <?php echo e(Request::segment(1) === 'dokter' ? 'active' : null); ?>">
               <!-- <ion-icon name="home-outline"></ion-icon> -->
               <i class="nav-icon fas fa-user-md"></i>
               <p>
@@ -48,7 +48,7 @@
               </p>
             </a>
           </li>
-          <li class="nav-item {{ Request::segment(1) === 'pasien' ? 'menu-open' : null }} {{ Request::segment(1) === 'pasienAdd' ? 'menu-open' : null }}">
+          <li class="nav-item <?php echo e(Request::segment(1) === 'pasien' ? 'menu-open' : null); ?> <?php echo e(Request::segment(1) === 'pasienAdd' ? 'menu-open' : null); ?>">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-wheelchair"></i>
               <p>
@@ -58,20 +58,20 @@
               <ul class="nav nav-treeview">
               </a>
               <li class="nav-item">
-                <a href="{{route('pasien.index')}}" class="nav-link {{ Request::segment(1) === 'pasien' ? 'active' : null }}">
+                <a href="<?php echo e(route('pasien.index')); ?>" class="nav-link <?php echo e(Request::segment(1) === 'pasien' ? 'active' : null); ?>">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Data</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{route('pasien.index')}}" class="nav-link {{ Request::segment(1) === 'pasienAdd' ? 'active' : null }}">
+                <a href="<?php echo e(route('pasien.index')); ?>" class="nav-link <?php echo e(Request::segment(1) === 'pasienAdd' ? 'active' : null); ?>">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Input</p>
                 </a>
               </li>
             </ul>
           </li>
-          <li class="nav-item {{ Request::segment(1) === 'rekamMedis' ? 'menu-open' : null }} {{ Request::segment(1) === 'rekamMedisAdd' ? 'menu-open' : null }}">
+          <li class="nav-item <?php echo e(Request::segment(1) === 'rekamMedis' ? 'menu-open' : null); ?> <?php echo e(Request::segment(1) === 'rekamMedisAdd' ? 'menu-open' : null); ?>">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-notes-medical"></i>
               <p>
@@ -81,20 +81,20 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link {{ Request::segment(1) === 'rekamMedis' ? 'active' : null }}">
+                <a href="#" class="nav-link <?php echo e(Request::segment(1) === 'rekamMedis' ? 'active' : null); ?>">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Data</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link {{ Request::segment(1) === 'rekamMedisAdd' ? 'active' : null }}">
+                <a href="#" class="nav-link <?php echo e(Request::segment(1) === 'rekamMedisAdd' ? 'active' : null); ?>">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Input</p>
                 </a>
               </li>
             </ul>
           </li>
-          <li class="nav-item {{ Request::segment(1) === 'kartuKes' ? 'menu-open' : null }} {{ Request::segment(1) === 'kartuKesAdd' ? 'menu-open' : null }}">
+          <li class="nav-item <?php echo e(Request::segment(1) === 'kartuKes' ? 'menu-open' : null); ?> <?php echo e(Request::segment(1) === 'kartuKesAdd' ? 'menu-open' : null); ?>">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-pager"></i>
               <p>
@@ -104,20 +104,20 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link {{ Request::segment(1) === 'kartuKes' ? 'active' : null }}">
+                <a href="#" class="nav-link <?php echo e(Request::segment(1) === 'kartuKes' ? 'active' : null); ?>">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Data</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link {{ Request::segment(1) === 'kartuKesAdd' ? 'active' : null }}">
+                <a href="#" class="nav-link <?php echo e(Request::segment(1) === 'kartuKesAdd' ? 'active' : null); ?>">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Input</p>
                 </a>
               </li>
             </ul>
           </li>
-          <li class="nav-item {{ Request::segment(1) === 'obat' ? 'menu-open' : null }} {{ Request::segment(1) === 'obatAdd' ? 'menu-open' : null }}">
+          <li class="nav-item <?php echo e(Request::segment(1) === 'obat' ? 'menu-open' : null); ?> <?php echo e(Request::segment(1) === 'obatAdd' ? 'menu-open' : null); ?>">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-pills"></i>
               <p>
@@ -127,20 +127,20 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link {{ Request::segment(1) === 'obat' ? 'active' : null }}">
+                <a href="#" class="nav-link <?php echo e(Request::segment(1) === 'obat' ? 'active' : null); ?>">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Data</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link {{ Request::segment(1) === 'obatAdd' ? 'active' : null }}">
+                <a href="#" class="nav-link <?php echo e(Request::segment(1) === 'obatAdd' ? 'active' : null); ?>">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Input</p>
                 </a>
               </li>
             </ul>
           </li>
-          <li class="nav-item {{ Request::segment(1) === 'ruang' ? 'menu-open' : null }} {{ Request::segment(1) === 'ruangAdd' ? 'menu-open' : null }}">
+          <li class="nav-item <?php echo e(Request::segment(1) === 'ruang' ? 'menu-open' : null); ?> <?php echo e(Request::segment(1) === 'ruangAdd' ? 'menu-open' : null); ?>">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-procedures"></i>
               <p>
@@ -150,21 +150,21 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link {{ Request::segment(1) === 'ruang' ? 'active' : null }}">
+                <a href="#" class="nav-link <?php echo e(Request::segment(1) === 'ruang' ? 'active' : null); ?>">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Data</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link {{ Request::segment(1) === 'ruangAdd' ? 'active' : null }}">
+                <a href="#" class="nav-link <?php echo e(Request::segment(1) === 'ruangAdd' ? 'active' : null); ?>">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Input</p>
                 </a>
               </li>
             </ul>
           </li>
-          <li class="nav-item {{ Request::segment(1) === 'users' ? 'menu-open' : null }} {{ Request::segment(1) === 'usersAdd' ? 'menu-open' : null }}">
-            <a href="#" class="nav-link {{ Request::segment(1) === 'users' ? 'active' : null }} {{ Request::segment(1) === 'usersAdd' ? 'active' : null }}">
+          <li class="nav-item <?php echo e(Request::segment(1) === 'users' ? 'menu-open' : null); ?> <?php echo e(Request::segment(1) === 'usersAdd' ? 'menu-open' : null); ?>">
+            <a href="#" class="nav-link <?php echo e(Request::segment(1) === 'users' ? 'active' : null); ?> <?php echo e(Request::segment(1) === 'usersAdd' ? 'active' : null); ?>">
               <i class="nav-icon fas fa-users-cog"></i>
               <p>
                 User Management
@@ -173,13 +173,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href=" {{route('users.index')}} " class="nav-link {{ Request::segment(1) === 'users' ? 'active' : null }}">
+                <a href=" <?php echo e(route('users.index')); ?> " class="nav-link <?php echo e(Request::segment(1) === 'users' ? 'active' : null); ?>">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Data</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link {{ Request::segment(1) === 'usersInput' ? 'active' : null }}">
+                <a href="#" class="nav-link <?php echo e(Request::segment(1) === 'usersInput' ? 'active' : null); ?>">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Input</p>
                 </a>
@@ -187,12 +187,12 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a href="{{ route('logout') }}"
+            <a href="<?php echo e(route('logout')); ?>"
             onclick="event.preventDefault();
             document.getElementById('logout-form').submit();" class="nav-link">
 
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-              @csrf
+            <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST" class="d-none">
+              <?php echo csrf_field(); ?>
             </form>
             <!-- <ion-icon name="home-outline"></ion-icon> -->
             <i class="nav-icon fas fa-sign-out-alt"></i>
@@ -206,4 +206,4 @@
     <!-- /.sidebar-menu -->
   </div>
   <!-- /.sidebar -->
-</aside>
+</aside><?php /**PATH C:\xampp\htdocs\rekam-medis\Web-Rekam-Medis\eHealth\resources\views/layouts/sidebar.blade.php ENDPATH**/ ?>
