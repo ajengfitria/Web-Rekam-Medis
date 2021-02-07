@@ -48,6 +48,8 @@ class RuangController extends Controller
     public function create()
     {
         //
+        $data['status'] = ['Tersedia','Penuh'];
+        return view('ruangAdd',$data);
     }
 
     /**

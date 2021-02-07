@@ -48,6 +48,7 @@ class KartuKesehatanController extends Controller
     public function create()
     {
         //
+        return view('kartuKesAdd');
     }
 
     /**

@@ -48,6 +48,7 @@ class RekamMedisController extends Controller
     public function create()
     {
         //
+        return view('rekamMedisAdd');
     }
 
     /**

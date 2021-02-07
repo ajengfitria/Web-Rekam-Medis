@@ -47,8 +47,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        $roles = Role::pluck('name','name')->all();
-        return view('users.create',compact('roles'));
+        $data['role'] = Role::all();
+        return view('usersAdd',$data);
     }
     
     /**
@@ -61,13 +61,14 @@ class UserController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
+            'username' => 'required',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|same:confirm-password',
             'roles' => 'required'
         ]);
     
         $input = $request->all();
-        $input['password'] = Hash::make($input['password']);
+        $input['password'] = Hash::make($input['username']);
     
         $user = User::create($input);
         $user->assignRole($request->input('roles'));

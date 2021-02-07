@@ -48,6 +48,7 @@ class ObatController extends Controller
     public function create()
     {
         //
+        return view('obatAdd');
     }
 
     /**
@@ -59,6 +60,19 @@ class ObatController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+    		'nama' => 'required|size:8',
+    		'kategori' => 'required|min:3|max:50',
+    		'stok' => 'required',
+        ]);
+
+    	$obat = new Obat();
+    	$obat->nama = $request->nama;
+    	$obat->kategori = $request->kategori;
+    	$obat->stok = $request->stok;
+    	$obat->save();
+
+    	return redirect(route('obat.index'))->with('message','Data Added Successfully');
     }
 
     /**

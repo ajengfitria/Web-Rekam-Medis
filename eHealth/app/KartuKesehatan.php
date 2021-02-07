@@ -7,4 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class KartuKesehatan extends Model
 {
     //
+    protected $table = 'kartu_kes';
 }

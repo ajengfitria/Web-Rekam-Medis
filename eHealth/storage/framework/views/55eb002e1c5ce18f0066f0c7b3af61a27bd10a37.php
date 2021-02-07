@@ -5,10 +5,10 @@
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
-        <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+        <img src="<?php echo e(asset('dist/img/user2-160x160.jpg')); ?>" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-        <a href="#" class="d-block">Alexander Pierce</a>
+        <a href="#" class="d-block"><?php echo e(Auth::user()->name); ?></a>
       </div>
     </div>
 
@@ -48,143 +48,54 @@
               </p>
             </a>
           </li>
-          <li class="nav-item <?php echo e(Request::segment(1) === 'pasien' ? 'menu-open' : null); ?> <?php echo e(Request::segment(1) === 'pasienAdd' ? 'menu-open' : null); ?>">
-            <a href="#" class="nav-link <?php echo e(Request::segment(1) === 'pasien' ? 'active' : null); ?> <?php echo e(Request::segment(1) === 'pasienAdd' ? 'active' : null); ?>">
+          <li class="nav-item">
+            <a href="<?php echo e(route('pasien.index')); ?> " class="nav-link <?php echo e(Request::segment(1) === 'pasien' ? 'active' : null); ?>">
+              <!-- <ion-icon name="home-outline"></ion-icon> -->
               <i class="nav-icon fas fa-wheelchair"></i>
               <p>
                 Pasien
-                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="<?php echo e(route('pasien.index')); ?>" class="nav-link <?php echo e(Request::segment(1) === 'pasien' ? 'active' : null); ?>">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Data</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link <?php echo e(Request::segment(1) === 'pasienAdd' ? 'active' : null); ?>">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Input</p>
-                </a>
-              </li>
-            </ul>
           </li>
-          <li class="nav-item <?php echo e(Request::segment(1) === 'rekamMedis' ? 'menu-open' : null); ?> <?php echo e(Request::segment(1) === 'rekamMedisAdd' ? 'menu-open' : null); ?>">
-            <a href="#" class="nav-link <?php echo e(Request::segment(1) === 'rekamMedis' ? 'active' : null); ?> <?php echo e(Request::segment(1) === 'rekamMedisAdd' ? 'active' : null); ?>">
+          <li class="nav-item">
+            <a href="<?php echo e(route('rekamMedis.index')); ?>" class="nav-link <?php echo e(Request::segment(1) === 'rekamMedis' ? 'active' : null); ?> <?php echo e(Request::segment(1) === 'rekamMedisAdd' ? 'active' : null); ?>">
               <i class="nav-icon fas fa-notes-medical"></i>
               <p>
                 Rekam Medis
-                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="<?php echo e(route('rekamMedis.index')); ?>" class="nav-link <?php echo e(Request::segment(1) === 'rekamMedis' ? 'active' : null); ?>">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Data</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link <?php echo e(Request::segment(1) === 'rekamMedisAdd' ? 'active' : null); ?>">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Input</p>
-                </a>
-              </li>
-            </ul>
           </li>
-          <li class="nav-item <?php echo e(Request::segment(1) === 'kartuKes' ? 'menu-open' : null); ?> <?php echo e(Request::segment(1) === 'kartuKesAdd' ? 'menu-open' : null); ?>">
-            <a href="#" class="nav-link <?php echo e(Request::segment(1) === 'kartuKes' ? 'active' : null); ?> <?php echo e(Request::segment(1) === 'kartuKesAdd' ? 'active' : null); ?>">
+          <li class="nav-item">
+            <a href="<?php echo e(route('kartuKes.index')); ?>" class="nav-link <?php echo e(Request::segment(1) === 'kartuKes' ? 'active' : null); ?> <?php echo e(Request::segment(1) === 'kartuKesAdd' ? 'active' : null); ?>">
               <i class="nav-icon fas fa-pager"></i>
               <p>
                 Kartu Kesehatan
-                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="<?php echo e(route('kartuKes.index')); ?>" class="nav-link <?php echo e(Request::segment(1) === 'kartuKes' ? 'active' : null); ?>">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Data</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link <?php echo e(Request::segment(1) === 'kartuKesAdd' ? 'active' : null); ?>">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Input</p>
-                </a>
-              </li>
-            </ul>
           </li>
-          <li class="nav-item <?php echo e(Request::segment(1) === 'obat' ? 'menu-open' : null); ?> <?php echo e(Request::segment(1) === 'obatAdd' ? 'menu-open' : null); ?>">
-            <a href="#" class="nav-link <?php echo e(Request::segment(1) === 'obat' ? 'active' : null); ?> <?php echo e(Request::segment(1) === 'obatAdd' ? 'active' : null); ?>">
+          <li class="nav-item">
+            <a href="<?php echo e(route('obat.index')); ?>" class="nav-link <?php echo e(Request::segment(1) === 'obat' ? 'active' : null); ?> <?php echo e(Request::segment(1) === 'obatAdd' ? 'active' : null); ?>">
               <i class="nav-icon fas fa-pills"></i>
               <p>
                 Obat
-                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="<?php echo e(route('obat.index')); ?>" class="nav-link <?php echo e(Request::segment(1) === 'obat' ? 'active' : null); ?>">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Data</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link <?php echo e(Request::segment(1) === 'obatAdd' ? 'active' : null); ?>">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Input</p>
-                </a>
-              </li>
-            </ul>
           </li>
-          <li class="nav-item <?php echo e(Request::segment(1) === 'ruang' ? 'menu-open' : null); ?> <?php echo e(Request::segment(1) === 'ruangAdd' ? 'menu-open' : null); ?>">
-            <a href="#" class="nav-link <?php echo e(Request::segment(1) === 'ruang' ? 'active' : null); ?> <?php echo e(Request::segment(1) === 'ruangAdd' ? 'active' : null); ?>">
+          <li class="nav-item">
+            <a href="<?php echo e(route('ruang.index')); ?>" class="nav-link <?php echo e(Request::segment(1) === 'ruang' ? 'active' : null); ?>">
               <i class="nav-icon fas fa-procedures"></i>
               <p>
                 Ruang
-                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="<?php echo e(route('ruang.index')); ?>" class="nav-link <?php echo e(Request::segment(1) === 'ruang' ? 'active' : null); ?>">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Data</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link <?php echo e(Request::segment(1) === 'ruangAdd' ? 'active' : null); ?>">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Input</p>
-                </a>
-              </li>
-            </ul>
           </li>
-          <li class="nav-item <?php echo e(Request::segment(1) === 'users' ? 'menu-open' : null); ?> <?php echo e(Request::segment(1) === 'usersAdd' ? 'menu-open' : null); ?>">
-            <a href="#" class="nav-link <?php echo e(Request::segment(1) === 'users' ? 'active' : null); ?> <?php echo e(Request::segment(1) === 'usersAdd' ? 'active' : null); ?>">
+          <li class="nav-item">
+            <a href="<?php echo e(route('users.index')); ?>" class="nav-link <?php echo e(Request::segment(1) === 'users' ? 'active' : null); ?>">
               <i class="nav-icon fas fa-users-cog"></i>
               <p>
                 User Management
-                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href=" <?php echo e(route('users.index')); ?> " class="nav-link <?php echo e(Request::segment(1) === 'users' ? 'active' : null); ?>">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Data</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link <?php echo e(Request::segment(1) === 'usersInput' ? 'active' : null); ?>">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Input</p>
-                </a>
-              </li>
-            </ul>
           </li>
           <li class="nav-item">
             <a href="<?php echo e(route('logout')); ?>"
