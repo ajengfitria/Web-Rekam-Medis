@@ -46,8 +46,8 @@
                 Pasien
                 <i class="right fas fa-angle-left"></i>
               </p>
-            <ul class="nav nav-treeview">
-            </a>
+              <ul class="nav nav-treeview">
+              </a>
               <li class="nav-item">
                 <a href="./index.html" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
@@ -177,9 +177,24 @@
               </li>
             </ul>
           </li>
-        </ul>
-      </nav>
-      <!-- /.sidebar-menu -->
-    </div>
-    <!-- /.sidebar -->
-  </aside><?php /**PATH C:\xampp\htdocs\rekam-medis\eHealth\resources\views/layouts/sidebar.blade.php ENDPATH**/ ?>
+          <li class="nav-item">
+            <a href="<?php echo e(route('logout')); ?>"
+            onclick="event.preventDefault();
+            document.getElementById('logout-form').submit();" class="nav-link">
+
+            <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST" class="d-none">
+              <?php echo csrf_field(); ?>
+            </form>
+            <!-- <ion-icon name="home-outline"></ion-icon> -->
+            <i class="nav-icon fas fa-sign-out-alt"></i>
+            <p>
+              Log out
+            </p>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
+</aside><?php /**PATH C:\xampp\htdocs\rekam-medis\eHealth\resources\views/layouts/sidebar.blade.php ENDPATH**/ ?>
