@@ -73,17 +73,41 @@
     $(function () {
       $("#example1").DataTable({
         "responsive": true, "lengthChange": false, "autoWidth": false,
-        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
+        "processing": true,
+        "serverSide": true,
+        "ajax": "{{ route('student.data') }}",
+        "columns": [
+            {
+                data: 'DT_RowIndex',
+                name: 'DT_RowIndex',
+            },
+            {
+                data: 'nim',
+                name: 'nim',
+            },
+            {
+                data: 'name',
+                name: 'name',
+            },
+            {
+                data: 'gender',
+                name: 'gender',
+            },
+            {
+                data: 'departement',
+                name: 'departement',
+            },
+            {
+                data: 'address',
+                name: 'address',
+            },
+            {
+                data: 'action',
+                name: 'action',
+            },
+        ]
       }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-      $('#example2').DataTable({
-        "paging": true,
-        "lengthChange": false,
-        "searching": false,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false,
-        "responsive": true,
-      });
     });
   </script>
   @endsection

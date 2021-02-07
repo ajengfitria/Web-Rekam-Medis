@@ -15,6 +15,7 @@ class RekamMedisController extends Controller
     public function index()
     {
         //
+        return view('rekamMedis');
     }
 
     /**

@@ -15,6 +15,7 @@ class KartuKesehatanController extends Controller
     public function index()
     {
         //
+        return view('kartuKes');
     }
 
     /**

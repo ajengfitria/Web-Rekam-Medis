@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', function () {
-    return view('auth.login');
+    return view('home');
 });
 
 Auth::routes();
@@ -28,5 +28,6 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('pasien','PasienController');
     Route::resource('rekamMedis','RekamMedisController');
     Route::resource('obat','ObatController');
-    Route::resource('kartuKesehatan','KartuKesehatanController');
+    Route::resource('kartuKes','KartuKesehatanController');
+    Route::resource('ruang','KartuKesehatanController');
 });

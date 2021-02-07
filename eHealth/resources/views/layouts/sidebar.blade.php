@@ -49,14 +49,14 @@
             </a>
           </li>
           <li class="nav-item {{ Request::segment(1) === 'pasien' ? 'menu-open' : null }} {{ Request::segment(1) === 'pasienAdd' ? 'menu-open' : null }}">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link {{ Request::segment(1) === 'pasien' ? 'active' : null }} {{ Request::segment(1) === 'pasienAdd' ? 'active' : null }}">
               <i class="nav-icon fas fa-wheelchair"></i>
               <p>
                 Pasien
                 <i class="right fas fa-angle-left"></i>
               </p>
-              <ul class="nav nav-treeview">
-              </a>
+            </a>
+            <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{{route('pasien.index')}}" class="nav-link {{ Request::segment(1) === 'pasien' ? 'active' : null }}">
                   <i class="far fa-circle nav-icon"></i>
@@ -64,7 +64,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{route('pasien.index')}}" class="nav-link {{ Request::segment(1) === 'pasienAdd' ? 'active' : null }}">
+                <a href="#" class="nav-link {{ Request::segment(1) === 'pasienAdd' ? 'active' : null }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Input</p>
                 </a>
@@ -72,7 +72,7 @@
             </ul>
           </li>
           <li class="nav-item {{ Request::segment(1) === 'rekamMedis' ? 'menu-open' : null }} {{ Request::segment(1) === 'rekamMedisAdd' ? 'menu-open' : null }}">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link {{ Request::segment(1) === 'rekamMedis' ? 'active' : null }} {{ Request::segment(1) === 'rekamMedisAdd' ? 'active' : null }}">
               <i class="nav-icon fas fa-notes-medical"></i>
               <p>
                 Rekam Medis
@@ -81,7 +81,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link {{ Request::segment(1) === 'rekamMedis' ? 'active' : null }}">
+                <a href="{{route('rekamMedis.index')}}" class="nav-link {{ Request::segment(1) === 'rekamMedis' ? 'active' : null }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Data</p>
                 </a>
@@ -95,7 +95,7 @@
             </ul>
           </li>
           <li class="nav-item {{ Request::segment(1) === 'kartuKes' ? 'menu-open' : null }} {{ Request::segment(1) === 'kartuKesAdd' ? 'menu-open' : null }}">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link {{ Request::segment(1) === 'kartuKes' ? 'active' : null }} {{ Request::segment(1) === 'kartuKesAdd' ? 'active' : null }}">
               <i class="nav-icon fas fa-pager"></i>
               <p>
                 Kartu Kesehatan
@@ -104,7 +104,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link {{ Request::segment(1) === 'kartuKes' ? 'active' : null }}">
+                <a href="{{route('kartuKes.index')}}" class="nav-link {{ Request::segment(1) === 'kartuKes' ? 'active' : null }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Data</p>
                 </a>
@@ -118,7 +118,7 @@
             </ul>
           </li>
           <li class="nav-item {{ Request::segment(1) === 'obat' ? 'menu-open' : null }} {{ Request::segment(1) === 'obatAdd' ? 'menu-open' : null }}">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link {{ Request::segment(1) === 'obat' ? 'active' : null }} {{ Request::segment(1) === 'obatAdd' ? 'active' : null }}">
               <i class="nav-icon fas fa-pills"></i>
               <p>
                 Obat
@@ -127,7 +127,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link {{ Request::segment(1) === 'obat' ? 'active' : null }}">
+                <a href="{{route('obat.index')}}" class="nav-link {{ Request::segment(1) === 'obat' ? 'active' : null }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Data</p>
                 </a>
@@ -141,7 +141,7 @@
             </ul>
           </li>
           <li class="nav-item {{ Request::segment(1) === 'ruang' ? 'menu-open' : null }} {{ Request::segment(1) === 'ruangAdd' ? 'menu-open' : null }}">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link {{ Request::segment(1) === 'ruang' ? 'active' : null }} {{ Request::segment(1) === 'ruangAdd' ? 'active' : null }}">
               <i class="nav-icon fas fa-procedures"></i>
               <p>
                 Ruang
@@ -150,7 +150,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link {{ Request::segment(1) === 'ruang' ? 'active' : null }}">
+                <a href="{{route('ruang.index')}}" class="nav-link {{ Request::segment(1) === 'ruang' ? 'active' : null }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Data</p>
                 </a>

@@ -15,6 +15,7 @@ class RuangController extends Controller
     public function index()
     {
         //
+        return view('ruang');
     }
 
     /**
