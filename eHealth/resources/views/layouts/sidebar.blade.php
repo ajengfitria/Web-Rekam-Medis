@@ -91,6 +91,7 @@
               </p>
             </a>
           </li>
+          @if (Auth::user()->hasRole('Admin'))
           <li class="nav-item">
             <a href="{{route('users.index')}}" class="nav-link {{ Request::segment(1) === 'users' ? 'active' : null }}">
               <i class="nav-icon fas fa-users-cog"></i>
@@ -99,6 +100,7 @@
               </p>
             </a>
           </li>
+          @endif
           <li class="nav-item">
             <a href="{{ route('logout') }}"
             onclick="event.preventDefault();

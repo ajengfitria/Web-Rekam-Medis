@@ -26,9 +26,11 @@
       <div class="col-12">
 
         <div class="card">
+          <?php if(Auth::user()->hasRole('Admin')): ?>
           <div class="card-header">
             <a href="<?php echo e(route('ruang.create')); ?>" class="btn btn-primary" >Tambah</a>
           </div>
+          <?php endif; ?>
           <!-- /.card-header -->
           <div class="card-body">
             <table id="example1" class="table table-bordered table-striped">

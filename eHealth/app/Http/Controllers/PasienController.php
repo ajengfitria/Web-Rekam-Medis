@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Pasien;
 use App\KartuKesehatan;
+use App\Dokter;
+use App\RekamMedis;
 use DataTables;
 use DB;
 use Hash;
@@ -64,30 +66,6 @@ class PasienController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        // $request->validate([
-    	// 	'nama' => '',
-    	// 	'jenkel' => '',
-    	// 	'alamat' => '',
-    	// 	'pekerjaan' => '',
-    	// 	'telp' => '',
-    	// 	'nik' => '',
-    	// 	'tgl_lahir' => '',
-    	// 	'id_kartu' => '',
-    	// 	'no_kartu' => '',
-        // ]);
-
-    	// $pasien = new Pasien();
-    	// $pasien->nama = $request->nama;
-    	// $pasien->jenkel = $request->jenkel;
-    	// $pasien->alamat = $request->alamat;
-    	// $pasien->pekerjaan = $request->pekerjaan;
-    	// $pasien->telp = $request->telp;
-    	// $pasien->nik = $request->nik;
-    	// $pasien->tgl_lahir = $request->tgl_lahir;
-    	// $pasien->id_kartu = $request->id_kartu;
-    	// $pasien->no_kartu = $request->no_kartu;
-    	// $pasien->save();
 
         $this->validate($request, [
             'nama' => '',
@@ -114,9 +92,43 @@ class PasienController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
         //
+        $data['pasien'] = Pasien::find($id);
+
+        $pasienGetId = Pasien::select('id_kartu')->where('id', $id)->limit(1)->get();
+        $pasienIdKartu = $pasienGetId[0];
+        $pasienIdKartu = $pasienIdKartu['id_kartu'];
+        $data['kartuKes'] = KartuKesehatan::find($pasienIdKartu);
+
+        // $rekamMedisGetId = RekamMedis::select('id')->where('id_dokter', $id)->limit(1)->get();
+        // $rekamMedisId = $rekamMedisGetId[0];
+        // $rekamMedisId = $rekamMedisId['id'];
+        // $data['rekamMedis'] = RekamMedis::find($rekamMedisId);
+
+        if ($request->ajax()) {
+            $data = DB::table('rekam_medis')->where('id_pasien', $id)->get();
+			return Datatables::of($data)
+				->addIndexColumn()
+				->addColumn('action', function($row){
+					$btn = '
+							<div class="text-center">
+								<div class="btn-group">
+									<a href="'.route('rekamMedis.show', ['id' => $row->id]).'" class="edit btn btn-primary btn-sm"> Detail </a>
+									<a href="'.route('rekamMedis.edit', ['id' => $row->id]).'" class="edit btn btn-success btn-sm"> Edit </a>
+									<a href="'.route('rekamMedis.destroy', ['id' => $row->id]).'" class="btn btn-danger btn-sm"> Hapus </a>
+								</div>
+							</div>
+							';
+					return $btn;
+				})
+				->rawColumns(['action']) 
+				->make(true);
+            }
+
+    
+        return view('pasienDetail',$data);
     }
 
     /**

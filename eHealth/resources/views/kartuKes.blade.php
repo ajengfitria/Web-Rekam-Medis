@@ -26,9 +26,11 @@
       <div class="col-12">
 
         <div class="card">
+          @if (Auth::user()->hasRole('Admin'))
           <div class="card-header">
             <a href="{{ route('kartuKes.create') }}" class="btn btn-primary" >Tambah</a>
           </div>
+          @endif
           <!-- /.card-header -->
           <div class="card-body">
             <table id="example1" class="table table-bordered table-striped">

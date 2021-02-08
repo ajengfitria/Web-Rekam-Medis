@@ -24,6 +24,7 @@
     <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
+            @if (Auth::user()->hasRole('Admin'))
             <div class="col-lg-3 col-6">
                 <!-- small box -->
                 <div class="small-box bg-info">
@@ -38,6 +39,7 @@
                     <a href="{{ route('dokter.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
+            @endif
             <div class="col-lg-3 col-6">
                 <!-- small box -->
                 <div class="small-box bg-info">
@@ -110,6 +112,7 @@
                     <a href="{{route('obat.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
+            @if (Auth::user()->hasRole('Admin'))
             <!-- ./col -->
             <div class="col-lg-3 col-6">
                 <!-- small box -->
@@ -125,6 +128,7 @@
                     <a href="{{ route('users.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
+            @endif
             <!-- ./col -->
         </div>
         <!-- /.row -->

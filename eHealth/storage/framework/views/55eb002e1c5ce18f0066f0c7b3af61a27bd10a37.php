@@ -91,6 +91,7 @@
               </p>
             </a>
           </li>
+          <?php if(Auth::user()->hasRole('Admin')): ?>
           <li class="nav-item">
             <a href="<?php echo e(route('users.index')); ?>" class="nav-link <?php echo e(Request::segment(1) === 'users' ? 'active' : null); ?>">
               <i class="nav-icon fas fa-users-cog"></i>
@@ -99,6 +100,7 @@
               </p>
             </a>
           </li>
+          <?php endif; ?>
           <li class="nav-item">
             <a href="<?php echo e(route('logout')); ?>"
             onclick="event.preventDefault();
