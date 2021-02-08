@@ -32,7 +32,7 @@
           </div>
           <!-- /.card-header -->
           <!-- form start -->
-          <form method="post" action="{{ route('users.store')}}" class="form-horizontal">
+          <form method="post" action="{{ route('pasien.store')}}" class="form-horizontal">
             {{-- @csrf --}}
             {{ csrf_field() }}
             <div class="card-body">

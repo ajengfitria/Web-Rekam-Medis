@@ -32,7 +32,7 @@
           </div>
           <!-- /.card-header -->
           <!-- form start -->
-          <form method="post" action="<?php echo e(route('users.store')); ?>" class="form-horizontal">
+          <form method="post" action="<?php echo e(route('pasien.store')); ?>" class="form-horizontal">
             
             <?php echo e(csrf_field()); ?>
 
@@ -106,7 +106,7 @@ unset($__errorArgs, $__bag); ?>
                     <option value="<?php echo e($rl->id); ?>" <?php echo e((old('id_kartu') == $rl->id) ? 'selected' : ''); ?>><?php echo e($rl->nama); ?> - Kelas <?php echo e($rl->kelas); ?></option>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                   </select>
-                  <?php $__errorArgs = ['kartuKes'];
+                  <?php $__errorArgs = ['id_kartu'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }

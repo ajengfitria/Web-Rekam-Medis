@@ -61,7 +61,7 @@ class UserController extends Controller
                         $btnRole = '<span class="badge badge-primary">Admin</span>';
                         return $btnRole;
                     } else {
-                        $btnRole = '<span class="badge badge-success">User</span>';
+                        $btnRole = '<span class="badge badge-success">Dokter</span>';
                         return $btnRole;
                     }
                 })

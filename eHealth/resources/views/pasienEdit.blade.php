@@ -73,7 +73,7 @@
               <div class="form-group row">
                 <label for="inputName" class="col-sm-2 col-form-label">Alamat</label>
                 <div class="col-sm-10">
-                  <textarea value="{{ $pasien->alamat }}" name="alamat" class="form-control" id="alamat"></textarea>
+                  <textarea value="{{ $pasien->alamat }}" name="alamat" class="form-control" id="alamat">{{$pasien->alamat}}</textarea>
                 </div>
               </div>
               <div class="form-group row">

@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home.index');
 
 
 Route::group(['middleware' => ['auth']], function() {
@@ -29,6 +29,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('obat','ObatController');
     Route::resource('kartuKes','KartuKesehatanController');
     Route::resource('ruang','RuangController');
+
+    // Home Controller
+    // Route::get('/', 'UserController@edit')->name('users.edit');
     
     // Users management
     Route::post('/users/input', 'UserController@store')->name('users.store');
@@ -67,4 +70,11 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/rekamMedis/delete/{id}', 'RekamMedisController@destroy')->name('rekamMedis.destroy');
     Route::get('/rekamMedis/edit/{id}', 'RekamMedisController@edit')->name('rekamMedis.edit');
     Route::put('/rekamMedis/update/{id}','RekamMedisController@update')->name('rekamMedis.update');
+
+    // dokter management
+    Route::get('/dokter/show/{id}','DokterController@show')->name('dokter.show');
+    Route::post('/dokter/input','DokterController@store')->name('dokter.store');
+    Route::get('/dokter/delete/{id}', 'DokterController@destroy')->name('dokter.destroy');
+    Route::get('/dokter/edit/{id}', 'DokterController@edit')->name('dokter.edit');
+    Route::put('/dokter/update/{id}','DokterController@update')->name('dokter.update');
 });

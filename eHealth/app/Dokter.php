@@ -10,6 +10,6 @@ class Dokter extends Model
     protected $table = 'dokter';
 
     protected $fillable = [
-        'nama', 'jenkel', 'alamat', 'telp', 'email', 'id_user', 'spesialis',
+        'nama', 'jenkel', 'alamat', 'telp', 'id_user', 'spesialis',
     ];
 }

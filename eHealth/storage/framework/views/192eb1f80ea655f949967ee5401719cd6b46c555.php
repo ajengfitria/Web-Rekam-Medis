@@ -81,7 +81,7 @@ unset($__errorArgs, $__bag); ?>
               <div class="form-group row">
                 <label for="inputName" class="col-sm-2 col-form-label">Alamat</label>
                 <div class="col-sm-10">
-                  <textarea value="<?php echo e($pasien->alamat); ?>" name="alamat" class="form-control" id="alamat"></textarea>
+                  <textarea value="<?php echo e($pasien->alamat); ?>" name="alamat" class="form-control" id="alamat"><?php echo e($pasien->alamat); ?></textarea>
                 </div>
               </div>
               <div class="form-group row">

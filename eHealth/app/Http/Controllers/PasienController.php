@@ -145,6 +145,25 @@ class PasienController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $this->validate($request, [
+            'nama' => '',
+    		'jenkel' => '',
+    		'alamat' => '',
+    		'pekerjaan' => '',
+    		'telp' => '',
+    		'nik' => '',
+    		'tgl_lahir' => '',
+    		'id_kartu' => '',
+    		'no_kartu' => '',
+        ]);
+    
+        $input = $request->all();
+
+        $pasien = Pasien::find($id);
+        $pasien->update($input);
+    
+        return redirect()->route('pasien.index')
+                        ->with('success','pasien updated successfully');
     }
 
     /**
