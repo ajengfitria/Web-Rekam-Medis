@@ -29,10 +29,14 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('obat','ObatController');
     Route::resource('kartuKes','KartuKesehatanController');
     Route::resource('ruang','RuangController');
-
-    // Home Controller
-    // Route::get('/', 'UserController@edit')->name('users.edit');
     
+    //
+    Route::get('/akun/{id}', 'UserController@showAkun')->name('users.showAkun');
+    Route::get('/akun/edit/{id}', 'UserController@editAkunAdmin')->name('users.editAkunAdmin');
+    Route::put('/akun/update/{id}','UserController@updateAkunAdmin')->name('users.updateAkunAdmin');
+    Route::get('/akun/edit/{id}', 'UserController@editAkunDokter')->name('users.editAkunDokter');
+    Route::put('/akun/update/{id}','UserController@updateAkunDokter')->name('users.updateAkunDokter');
+
     // Users management
     Route::post('/users/input', 'UserController@store')->name('users.store');
     Route::get('/users/delete/{id}', 'UserController@destroy')->name('users.destroy');
@@ -72,9 +76,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::put('/rekamMedis/update/{id}','RekamMedisController@update')->name('rekamMedis.update');
 
     // dokter management
-    Route::get('/dokter/show/{id}','DokterController@show')->name('dokter.show');
-    Route::post('/dokter/input','DokterController@store')->name('dokter.store');
-    Route::get('/dokter/delete/{id}', 'DokterController@destroy')->name('dokter.destroy');
-    Route::get('/dokter/edit/{id}', 'DokterController@edit')->name('dokter.edit');
-    Route::put('/dokter/update/{id}','DokterController@update')->name('dokter.update');
+    Route::get('/dokter/show/{id}','DokterController@show')->middleware('role:Admin')->name('dokter.show');
+    Route::post('/dokter/input','DokterController@store')->middleware('role:Admin')->name('dokter.store');
+    Route::get('/dokter/delete/{id}', 'DokterController@destroy')->middleware('role:Admin')->name('dokter.destroy');
+    Route::get('/dokter/edit/{id}', 'DokterController@edit')->middleware('role:Admin')->name('dokter.edit');
+    Route::put('/dokter/update/{id}','DokterController@update')->middleware('role:Admin')->name('dokter.update');
 });

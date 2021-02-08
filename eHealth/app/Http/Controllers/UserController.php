@@ -14,13 +14,13 @@ use DataTables;
 
 class UserController extends Controller
 {
-    function __construct()
-    {
-         $this->middleware('permission:user-list');
-         $this->middleware('permission:user-create', ['only' => ['create','store']]);
-         $this->middleware('permission:user-edit', ['only' => ['edit','update']]);
-         $this->middleware('permission:user-delete', ['only' => ['destroy']]);
-    }
+    // function __construct()
+    // {
+    //      $this->middleware('permission:user-list');
+    //      $this->middleware('permission:user-create', ['only' => ['create','store']]);
+    //      $this->middleware('permission:user-edit', ['only' => ['edit','update']]);
+    //      $this->middleware('permission:user-delete', ['only' => ['destroy']]);
+    // }
 
     /**
      * Display a listing of the resource.
@@ -238,5 +238,135 @@ class UserController extends Controller
         Administrator::where('id_user', $id)->delete();
             return redirect()->route('users.index')
             ->with('success','User deleted successfully');
+    }
+
+    public function showAkun($id)
+    {
+        $userDt = User::all()->where('id', $id);
+            $data['user'] = User::find($id);
+
+            if(auth()->user()->hasRole('Admin')){
+            $adminGetId = Administrator::select('id')->where('id_user', $id)->limit(1)->get();
+            $adminId = $adminGetId[0];
+            $adminId = $adminId['id'];
+            $data['admin'] = Administrator::find($adminId);
+            return view('showAkun',$data);
+            } else {
+            $dokterGetId = Dokter::select('id')->where('id_user', $id)->limit(1)->get();
+            $dokterId = $dokterGetId[0];
+            $dokterId = $dokterId['id'];
+            $data['dokter'] = Dokter::find($dokterId);
+            return view('showAkun',$data);
+            }
+        
+    }
+
+    public function editAkunAdmin($id)
+    {
+        //
+        $data['user'] = User::find($id);
+
+        $adminGetId = Administrator::select('id')->where('id_user', $id)->limit(1)->get();
+        $adminId = $adminGetId[0];
+        $adminId = $adminId['id'];
+
+        $data['admin'] = Administrator::find($adminId);
+        $data['jenkel'] = ['Pria', 'Wanita'];
+    
+        return view('usersEditAkunAdmin',$data);
+    }
+
+    public function updateAkunAdmin(Request $request, $id)
+    {
+        //update admin
+        $this->validate($request, [
+            'nama' => '',
+    		'email' => '',
+    		'jenkel' => '',
+    		'telp' => '',
+    		'alamat' => '',
+        ]);
+    
+        
+        $adminGetId = Administrator::select('id')->where('id_user', $id)->limit(1)->get();
+        $adminId = $adminGetId[0];
+        $adminId = $adminId['id'];
+        
+        $admin = Administrator::find($adminId);
+        $input = $request->all();
+        $admin->update($input);
+
+        //update users
+        $this->validate($request, [
+            'username' => '',
+            'nama' => '',
+    		'email' => '',
+            'password' => '',
+        ]);
+
+        $input = $request->all();
+        $input['password'] = Hash::make($input['password']);
+        $input['name'] = $request->input('nama');
+
+        $user = User::find($id);
+        $user->update($input);
+        
+        return redirect()->route('users.showAkun', ['id' => $id])
+                        ->with('success','admin updated successfully');
+    }
+
+    public function editAkunDokter($id)
+    {
+        //
+        $data['user'] = User::find($id);
+
+        $dokterGetId = Dokter::select('id')->where('id_user', $id)->limit(1)->get();
+        $dokterId = $dokterGetId[0];
+        $dokterId = $dokterId['id'];
+
+        $data['dokter'] = Dokter::find($dokterId);
+        $data['jenkel'] = ['Pria', 'Wanita'];
+    
+        return view('usersEditAkunDokter',$data);
+    }
+
+    public function updateAkunDokter(Request $request, $id)
+    {
+        //update dokter
+        $this->validate($request, [
+            'nama' => '',
+    		'email' => '',
+    		'jenkel' => '',
+    		'telp' => '',
+    		'alamat' => '',
+    		'spesialis' => '',
+        ]);
+    
+        
+        $dokterGetId = Dokter::select('id')->where('id_user', $id)->limit(1)->get();
+        $dokterId = $dokterGetId[0];
+        $dokterId = $dokterId['id'];
+        
+        $dokter = Dokter::find($dokterId);
+        $input = $request->all();
+        $dokter->update($input);
+
+        //update users
+        $this->validate($request, [
+            'username' => '',
+            'nama' => '',
+    		'email' => '',
+            'password' => '',
+        ]);
+
+        $input = $request->all();
+        $input['password'] = Hash::make($input['password']);
+        $input['name'] = $request->input('nama');
+
+        $user = User::find($id);
+        $user->update($input);
+        
+        return redirect()->route('users.showAkun', ['id' => $id])
+                        ->with('success','dokter updated successfully');
     }
 }

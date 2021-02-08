@@ -39,6 +39,7 @@
               </p>
             </a>
           </li>
+          @if (Auth::user()->hasRole('Admin'))
           <li class="nav-item">
             <a href=" {{route('dokter.index')}} " class="nav-link {{ Request::segment(1) === 'dokter' ? 'active' : null }}">
               <!-- <ion-icon name="home-outline"></ion-icon> -->
@@ -48,6 +49,7 @@
               </p>
             </a>
           </li>
+          @endif
           <li class="nav-item">
             <a href="{{route('pasien.index')}} " class="nav-link {{ Request::segment(1) === 'pasien' ? 'active' : null }}">
               <!-- <ion-icon name="home-outline"></ion-icon> -->

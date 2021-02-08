@@ -39,6 +39,7 @@
               </p>
             </a>
           </li>
+          <?php if(Auth::user()->hasRole('Admin')): ?>
           <li class="nav-item">
             <a href=" <?php echo e(route('dokter.index')); ?> " class="nav-link <?php echo e(Request::segment(1) === 'dokter' ? 'active' : null); ?>">
               <!-- <ion-icon name="home-outline"></ion-icon> -->
@@ -48,6 +49,7 @@
               </p>
             </a>
           </li>
+          <?php endif; ?>
           <li class="nav-item">
             <a href="<?php echo e(route('pasien.index')); ?> " class="nav-link <?php echo e(Request::segment(1) === 'pasien' ? 'active' : null); ?>">
               <!-- <ion-icon name="home-outline"></ion-icon> -->

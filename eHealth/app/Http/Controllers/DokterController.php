@@ -12,6 +12,10 @@ use Hash;
 
 class DokterController extends Controller
 {
+    // function __construct()
+    // {
+    //     $this->middleware('permission:dokter-all', ['only' => ['index','store','create','edit','destroy']]);
+    // }
     /**
      * Display a listing of the resource.
      *
