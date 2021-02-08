@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Pasien;
+use App\KartuKesehatan;
 use DataTables;
 use DB;
 use Hash;
@@ -27,8 +28,9 @@ class PasienController extends Controller
 					$btn = '
 							<div class="text-center">
 								<div class="btn-group">
-									<a href="#" class="edit btn btn-success btn-sm"> Edit </a>
-									<a href="#" class="btn btn-danger btn-sm"> Hapus </a>
+									<a href="'.route('pasien.show', ['id' => $row->id]).'" class="edit btn btn-primary btn-sm"> Detail </a>
+                                    <a href="'.route('pasien.edit', ['id' => $row->id]).'" class="edit btn btn-success btn-sm"> Edit </a>
+									<a href="'.route('pasien.destroy', ['id' => $row->id]).'" class="btn btn-danger btn-sm"> Hapus </a>
 								</div>
 							</div>
 							';
@@ -48,6 +50,10 @@ class PasienController extends Controller
     public function create()
     {
         //
+        $data['jenkel'] = ['Pria', 'Wanita'];
+        $data['kartuKes'] = KartuKesehatan::all();
+    
+        return view('pasienAdd',$data);
     }
 
     /**
@@ -59,6 +65,47 @@ class PasienController extends Controller
     public function store(Request $request)
     {
         //
+        // $request->validate([
+    	// 	'nama' => '',
+    	// 	'jenkel' => '',
+    	// 	'alamat' => '',
+    	// 	'pekerjaan' => '',
+    	// 	'telp' => '',
+    	// 	'nik' => '',
+    	// 	'tgl_lahir' => '',
+    	// 	'id_kartu' => '',
+    	// 	'no_kartu' => '',
+        // ]);
+
+    	// $pasien = new Pasien();
+    	// $pasien->nama = $request->nama;
+    	// $pasien->jenkel = $request->jenkel;
+    	// $pasien->alamat = $request->alamat;
+    	// $pasien->pekerjaan = $request->pekerjaan;
+    	// $pasien->telp = $request->telp;
+    	// $pasien->nik = $request->nik;
+    	// $pasien->tgl_lahir = $request->tgl_lahir;
+    	// $pasien->id_kartu = $request->id_kartu;
+    	// $pasien->no_kartu = $request->no_kartu;
+    	// $pasien->save();
+
+        $this->validate($request, [
+            'nama' => '',
+    		'jenkel' => '',
+    		'alamat' => '',
+    		'pekerjaan' => '',
+    		'telp' => '',
+    		'nik' => '',
+    		'tgl_lahir' => '',
+    		'id_kartu' => '',
+    		'no_kartu' => '',
+        ]);
+    
+        $input = $request->all();
+
+        $pasien = Pasien::create($input);
+
+    	return redirect(route('pasien.index'))->with('message','Data Added Successfully');
     }
 
     /**
@@ -81,6 +128,11 @@ class PasienController extends Controller
     public function edit($id)
     {
         //
+        $data['pasien'] = Pasien::find($id);
+        $data['jenkel'] = ['Pria', 'Wanita'];
+        $data['kartuKes'] = KartuKesehatan::all();
+    
+        return view('pasienEdit',$data);
     }
 
     /**
@@ -104,5 +156,8 @@ class PasienController extends Controller
     public function destroy($id)
     {
         //
+        Pasien::where('id', $id)->delete();
+            return redirect()->route('pasien.index')
+            ->with('success','Pasien deleted successfully');
     }
 }

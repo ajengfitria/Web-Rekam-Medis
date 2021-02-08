@@ -34,14 +34,25 @@ class UserController extends Controller
 			return Datatables::of($data)
 				->addIndexColumn()
 				->addColumn('action', function($row){ 
-					$btn = '
+                    if($row->id != auth()->user()->id){
+                        $btn = '
 							<div class="text-center">
 								<div class="btn-group">
 									<a href="'.route('users.edit', ['id' => $row->id]).'" class="edit btn btn-success btn-sm"> Edit </a>
-									<a href="'.route('users.destroy', ['id' => $row->id]).'" class="btn btn-danger btn-sm"> Hapus </a>
+									<a href="'.route('users.destroy', ['id' => $row->id]).'" class="btn btn-danger btn-sm" disabled> Hapus </a>
 								</div>
 							</div>
 							';
+                    }else{
+					$btn = '
+							<div class="text-center">
+								<div class="btn-group">
+									<a href="'.route('users.edit', ['id' => $row->id]).'" class="edit btn btn-success btn-sm disabled"> Edit </a>
+									<a href="'.route('users.destroy', ['id' => $row->id]).'" class="btn btn-danger btn-sm disabled"> Hapus </a>
+								</div>
+							</div>
+							';
+                    }
 					return $btn;
 				})
                 ->addColumn('roles', function($row){

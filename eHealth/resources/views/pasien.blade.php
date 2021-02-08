@@ -27,7 +27,7 @@
 
         <div class="card">
           <div class="card-header">
-            <a href="{{ route('users.create') }}" class="btn btn-primary" >Tambah</a>
+            <a href="{{ route('pasien.create') }}" class="btn btn-primary" >Tambah</a>
           </div>
           <!-- /.card-header -->
           <div class="card-body">

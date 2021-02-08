@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\RekamMedis;
+use App\Pasien;
 use DataTables;
 use DB;
 use Hash;
@@ -27,8 +28,9 @@ class RekamMedisController extends Controller
 					$btn = '
 							<div class="text-center">
 								<div class="btn-group">
-									<a href="#" class="edit btn btn-success btn-sm"> Edit </a>
-									<a href="#" class="btn btn-danger btn-sm"> Hapus </a>
+									<a href="'.route('rekamMedis.show', ['id' => $row->id]).'" class="edit btn btn-primary btn-sm"> Detail </a>
+									<a href="'.route('rekamMedis.edit', ['id' => $row->id]).'" class="edit btn btn-success btn-sm"> Edit </a>
+									<a href="'.route('rekamMedis.destroy', ['id' => $row->id]).'" class="btn btn-danger btn-sm"> Hapus </a>
 								</div>
 							</div>
 							';
@@ -48,7 +50,9 @@ class RekamMedisController extends Controller
     public function create()
     {
         //
-        return view('rekamMedisAdd');
+        $data['pasien'] = Pasien::all();
+    
+        return view('rekamMedisAdd', $data);
     }
 
     /**
@@ -60,6 +64,25 @@ class RekamMedisController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+    		'id_pasien' => '',
+    		'id_dokter' => '',
+    		'jenis_pelayanan' => '',
+    		'keluhan' => '',
+    		'diagnosa' => '',
+    		'tindakan' => '',
+        ]);
+
+    	$rekamMedis = new RekamMedis();
+    	$rekamMedis->id_pasien = $request->id_pasien;
+    	$rekamMedis->id_dokter = auth()->user()->id;
+    	$rekamMedis->jenis_pelayanan = $request->jenis_pelayanan;
+    	$rekamMedis->keluhan = $request->keluhan;
+    	$rekamMedis->diagnosa = $request->diagnosa;
+    	$rekamMedis->tindakan = $request->tindakan;
+    	$rekamMedis->save();
+
+    	return redirect(route('rekamMedis.index'))->with('message','Data Added Successfully');
     }
 
     /**
@@ -71,6 +94,7 @@ class RekamMedisController extends Controller
     public function show($id)
     {
         //
+        
     }
 
     /**
@@ -82,6 +106,10 @@ class RekamMedisController extends Controller
     public function edit($id)
     {
         //
+        $data['rekamMedis'] = RekamMedis::find($id);
+        $data['pasien'] = Pasien::all();
+
+        return view('rekamMedisEdit',$data);
     }
 
     /**
@@ -94,6 +122,22 @@ class RekamMedisController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $this->validate($request, [
+            'id_pasien' => '',
+    		'id_dokter' => '',
+    		'jenis_pelayanan' => '',
+    		'keluhan' => '',
+    		'diagnosa' => '',
+    		'tindakan' => '',
+        ]);
+    
+        $input = $request->all();
+
+        $rekamMedis = RekamMedis::find($id);
+        $rekamMedis->update($input);
+    
+        return redirect()->route('rekamMedis.index')
+                        ->with('success','rekamMedis updated successfully');
     }
 
     /**
@@ -105,5 +149,8 @@ class RekamMedisController extends Controller
     public function destroy($id)
     {
         //
+        RekamMedis::where('id', $id)->delete();
+            return redirect()->route('rekamMedis.index')
+            ->with('success','Rekam Medis deleted successfully');
     }
 }

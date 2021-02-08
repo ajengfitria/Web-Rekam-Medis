@@ -27,8 +27,8 @@ class RuangController extends Controller
 					$btn = '
 							<div class="text-center">
 								<div class="btn-group">
-									<a href="#" class="edit btn btn-success btn-sm"> Edit </a>
-									<a href="#" class="btn btn-danger btn-sm"> Hapus </a>
+									<a href="'.route('ruang.edit', ['id' => $row->id]).'" class="edit btn btn-success btn-sm"> Edit </a>
+									<a href="'.route('ruang.destroy', ['id' => $row->id]).'" class="btn btn-danger btn-sm"> Hapus </a>
 								</div>
 							</div>
 							';
@@ -61,6 +61,21 @@ class RuangController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+    		'nama' => '',
+    		'no' => '',
+    		'kelas' => '',
+            'status' => '',
+        ]);
+
+    	$ruang = new Ruang();
+    	$ruang->nama = $request->nama;
+    	$ruang->no = $request->no;
+    	$ruang->kelas = $request->kelas;
+    	$ruang->status = $request->status;
+    	$ruang->save();
+
+    	return redirect(route('ruang.index'))->with('message','Data Added Successfully');
     }
 
     /**
@@ -83,28 +98,36 @@ class RuangController extends Controller
     public function edit($id)
     {
         //
+        $data['status'] = ['Tersedia','Penuh'];
+        $data['ruang'] = Ruang::find($id);
+    
+        return view('ruangEdit',$data);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
+        $this->validate($request, [
+            'nama' => '',
+    		'no' => '',
+    		'kelas' => '',
+            'status' => '',
+        ]);
+    
+        $input = $request->all();
+
+        $ruang = Ruang::find($id);
+        $ruang->update($input);
+    
+        return redirect()->route('ruang.index')
+                        ->with('success','Ruang updated successfully');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //
+        Ruang::where('id', $id)->delete();
+            return redirect()->route('ruang.index')
+            ->with('success','User deleted successfully');
     }
 }

@@ -11,8 +11,8 @@
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
-          <li class="breadcrumb-item"><a href="#">Rekam Medis</a></li>
-          <li class="breadcrumb-item active">Input</li>
+          <li class="breadcrumb-item"><a href="{{ route('rekamMedis.index') }}">Rekam Medis</a></li>
+          <li class="breadcrumb-item active">Edit</li>
         </ol>
       </div>
     </div>
@@ -28,12 +28,13 @@
         <!-- Horizontal Form -->
         <div class="card card-info">
           <div class="card-header">
-            <h3 class="card-title">Tambah Rekam Medis</h3>
+            <h3 class="card-title">Edit Rekam Medis</h3>
           </div>
           <!-- /.card-header -->
           <!-- form start -->
-          <form method="post" action="{{ route('rekamMedis.store')}}" class="form-horizontal">
-            @csrf
+          <form method="post" action="{{ route('rekamMedis.update',['id' => $rekamMedis->id]) }}" class="form-horizontal">
+            @method('PUT')
+          @csrf
             <div class="card-body">
               <div class="form-group row">
                 <label for="inputKartuKesehatan" class="col-sm-2 col-form-label">Pasien</label>
@@ -41,7 +42,7 @@
                   <select class="form-control" name="id_pasien" required>
                     <option value="">Pilih Pasien</option>
                     @foreach ($pasien as $pasienDt)
-                    <option value="{{ $pasienDt->nik }}" {{ (old('id_pasien') == $pasienDt->nik) ? 'selected' : '' }}>{{ $pasienDt->nik }} - {{ $pasienDt->nama }}</option>
+                    <option value="{{ $pasienDt->nik }}" {{ ($rekamMedis->id_pasien == $pasienDt->nik) ? 'selected' : '' }}>{{ $pasienDt->nik }} - {{ $pasienDt->nama }}</option>
                     @endforeach
                   </select>
                   @error('id_pasien')
@@ -54,30 +55,30 @@
               <div class="form-group row">
                 <label for="inputName" class="col-sm-2 col-form-label">Jenis Pelayanan</label>
                 <div class="col-sm-10">
-                  <textarea value="{{ old('jenis_pelayanan') }}" name="jenis_pelayanan" class="form-control" id="jenis_pelayanan"></textarea>
+                  <textarea value="{{ $rekamMedis-> jenis_pelayanan }}" name="jenis_pelayanan" class="form-control" id="jenis_pelayanan">{{ $rekamMedis->jenis_pelayanan }}</textarea>
                 </div>
               </div>
               <div class="form-group row">
                 <label for="inputName" class="col-sm-2 col-form-label">Keluhan</label>
                 <div class="col-sm-10">
-                  <textarea value="{{ old('keluhan') }}" name="keluhan" class="form-control" id="keluhan"></textarea>
+                  <textarea value="{{ $rekamMedis->keluhan }}" name="keluhan" class="form-control" id="keluhan">{{ $rekamMedis->keluhan }}</textarea>
                 </div>
               </div>
               <div class="form-group row">
                 <label for="inputName" class="col-sm-2 col-form-label">Diagnosa</label>
                 <div class="col-sm-10">
-                  <textarea value="{{ old('diagnosa') }}" name="diagnosa" class="form-control" id="diagnosa"></textarea>
+                  <textarea value="{{ $rekamMedis->diagnosa }}" name="diagnosa" class="form-control" id="diagnosa">{{ $rekamMedis->diagnosa }}</textarea>
                 </div>
               </div>
               <div class="form-group row">
                 <label for="inputName" class="col-sm-2 col-form-label">Tindakan</label>
                 <div class="col-sm-10">
-                  <textarea value="{{ old('tindakan') }}" name="tindakan" class="form-control" id="tindakan"></textarea>
+                  <textarea value="{{ $rekamMedis->tindakan }}" name="tindakan" class="form-control" id="tindakan">{{ $rekamMedis->tindakan }}</textarea>
                 </div>
               </div>
             <!-- /.card-body -->
             <div class="card-footer">
-              <button type="submit" class="btn btn-info">Tambah</button>
+              <button type="submit" class="btn btn-info">Edit</button>
             </div>
             <!-- /.card-footer -->
           </form>

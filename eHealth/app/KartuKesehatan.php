@@ -8,4 +8,8 @@ class KartuKesehatan extends Model
 {
     //
     protected $table = 'kartu_kes';
+
+    protected $fillable = [
+        'nama', 'jenis', 'kelas', 
+    ];
 }

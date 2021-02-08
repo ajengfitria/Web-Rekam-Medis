@@ -27,8 +27,8 @@ class ObatController extends Controller
 					$btn = '
 							<div class="text-center">
 								<div class="btn-group">
-									<a href="#" class="edit btn btn-success btn-sm"> Edit </a>
-									<a href="#" class="btn btn-danger btn-sm"> Hapus </a>
+									<a href="'.route('obat.edit', ['id' => $row->id]).'" class="edit btn btn-success btn-sm"> Edit </a>
+									<a href="'.route('obat.destroy', ['id' => $row->id]).'" class="btn btn-danger btn-sm"> Hapus </a>
 								</div>
 							</div>
 							';
@@ -95,6 +95,9 @@ class ObatController extends Controller
     public function edit($id)
     {
         //
+        $data['obat'] = Obat::find($id);
+    
+        return view('obatEdit',$data);
     }
 
     /**
@@ -107,6 +110,19 @@ class ObatController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $this->validate($request, [
+            'nama' => '',
+    		'kategori' => '',
+    		'stok' => '',
+        ]);
+    
+        $input = $request->all();
+
+        $obat = Obat::find($id);
+        $obat->update($input);
+    
+        return redirect()->route('obat.index')
+                        ->with('success','Obat updated successfully');
     }
 
     /**
@@ -118,5 +134,8 @@ class ObatController extends Controller
     public function destroy($id)
     {
         //
+        Obat::where('id', $id)->delete();
+            return redirect()->route('obat.index')
+            ->with('success','User deleted successfully');
     }
 }

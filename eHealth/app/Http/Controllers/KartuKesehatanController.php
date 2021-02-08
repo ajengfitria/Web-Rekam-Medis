@@ -27,8 +27,8 @@ class KartuKesehatanController extends Controller
 					$btn = '
 							<div class="text-center">
 								<div class="btn-group">
-									<a href="#" class="edit btn btn-success btn-sm"> Edit </a>
-									<a href="#" class="btn btn-danger btn-sm"> Hapus </a>
+									<a href="'.route('kartuKes.edit', ['id' => $row->id]).'" class="edit btn btn-success btn-sm"> Edit </a>
+									<a href="'.route('kartuKes.destroy', ['id' => $row->id]).'" class="btn btn-danger btn-sm"> Hapus </a>
 								</div>
 							</div>
 							';
@@ -60,50 +60,57 @@ class KartuKesehatanController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+    		'nama' => '',
+    		'jenis' => '',
+    		'kelas' => '',
+        ]);
+
+    	$kartuKes = new KartuKesehatan();
+    	$kartuKes->nama = $request->nama;
+    	$kartuKes->jenis = $request->jenis;
+    	$kartuKes->kelas = $request->kelas;
+    	$kartuKes->save();
+
+    	return redirect(route('kartuKes.index'))->with('message','Data Added Successfully');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
+        $data['kartuKes'] = KartuKesehatan::find($id);
+    
+        return view('kartuKesEdit',$data);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
+        $this->validate($request, [
+            'nama' => '',
+    		'jenis' => '',
+    		'kelas' => '',
+        ]);
+    
+        $input = $request->all();
+
+        $kartuKes = KartuKesehatan::find($id);
+        $kartuKes->update($input);
+    
+        return redirect()->route('kartuKes.index')
+                        ->with('success','Kartu Kesehatan updated successfully');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //
+        KartuKesehatan::find($id)->delete();
+            return redirect()->route('kartuKes.index')
+            ->with('success','User deleted successfully');
     }
 }

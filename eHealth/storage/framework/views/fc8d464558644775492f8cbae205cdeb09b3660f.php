@@ -27,7 +27,7 @@
 
         <div class="card">
           <div class="card-header">
-            <a href="<?php echo e(route('users.create')); ?>" class="btn btn-primary" >Tambah</a>
+            <a href="<?php echo e(route('pasien.create')); ?>" class="btn btn-primary" >Tambah</a>
           </div>
           <!-- /.card-header -->
           <div class="card-body">

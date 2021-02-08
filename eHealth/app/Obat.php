@@ -8,4 +8,9 @@ class Obat extends Model
 {
     //
     protected $table = 'obat';
+
+    protected $fillable = [
+        'name', 'kategori', 'stok', 
+    ];
+
 }

@@ -35,10 +35,10 @@
               <thead>
               <tr>
                 <th>No</th>
-                <th>Nama Ruang</th>
-                <th>No Ruang</th>
-                <th>Kelas</th>
-                <th>Status</th>
+                <th>Nama Obat</th>
+                <th>Kategori</th>
+                <th>Tanggal Update</th>
+                <th>Stok</th>
                 <th>Aksi</th>
               </tr>
               </thead>
@@ -48,10 +48,10 @@
               <tfoot>
               <tr>
                 <th>No</th>
-                <th>Nama Ruang</th>
-                <th>No Ruang</th>
-                <th>Kelas</th>
-                <th>Status</th>
+                <th>Nama Obat</th>
+                <th>Kategori</th>
+                <th>Tanggal Update</th>
+                <th>Stok</th>
                 <th>Aksi</th>
               </tr>
               </tfoot>

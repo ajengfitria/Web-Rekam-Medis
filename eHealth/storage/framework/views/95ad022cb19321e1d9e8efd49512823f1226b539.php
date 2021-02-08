@@ -32,7 +32,7 @@
           </div>
           <!-- /.card-header -->
           <!-- form start -->
-          <form method="post" action="<?php echo e(route('obat.store')); ?>" class="form-horizontal">
+          <form method="post" action="<?php echo e(route('kartuKes.store')); ?>" class="form-horizontal">
             <?php echo csrf_field(); ?>
             <div class="card-body">
               <div class="form-group row">
@@ -42,15 +42,15 @@
                 </div>
               </div>
               <div class="form-group row">
-                <label for="inputName" class="col-sm-2 col-form-label">Kategori</label>
+                <label for="inputName" class="col-sm-2 col-form-label">Jenis</label>
                 <div class="col-sm-10">
-                  <input type="text" name="kategori" class="form-control" id="inputName" placeholder="Kategori" value="<?php echo e(old('kategori')); ?>">
+                  <input type="text" name="jenis" class="form-control" id="inputName" placeholder="Jenis" value="<?php echo e(old('kategori')); ?>">
                 </div>
               </div>
               <div class="form-group row">
-                <label for="inputName" class="col-sm-2 col-form-label">Stok</label>
+                <label for="inputName" class="col-sm-2 col-form-label">Kelas</label>
                 <div class="col-sm-10">
-                  <input type="text" name="stok" class="form-control" id="inputName" placeholder="Stok" value="<?php echo e(old('stok')); ?>">
+                  <input type="text" name="kelas" class="form-control" id="inputName" placeholder="Kelas" value="<?php echo e(old('stok')); ?>">
                 </div>
               </div>
             </div>
