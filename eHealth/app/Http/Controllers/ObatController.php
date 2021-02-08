@@ -61,9 +61,9 @@ class ObatController extends Controller
     {
         //
         $request->validate([
-    		'nama' => 'required|size:8',
-    		'kategori' => 'required|min:3|max:50',
-    		'stok' => 'required',
+    		'nama' => '',
+    		'kategori' => '',
+    		'stok' => '',
         ]);
 
     	$obat = new Obat();

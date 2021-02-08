@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Dokter;
+use App\Administrator;
 use Spatie\Permission\Models\Role;
 use DB;
 use Hash;
@@ -12,6 +14,14 @@ use DataTables;
 
 class UserController extends Controller
 {
+    function __construct()
+    {
+         $this->middleware('permission:user-list');
+         $this->middleware('permission:user-create', ['only' => ['create','store']]);
+         $this->middleware('permission:user-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:user-delete', ['only' => ['destroy']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -23,18 +33,28 @@ class UserController extends Controller
 			$data = User::all();
 			return Datatables::of($data)
 				->addIndexColumn()
-				->addColumn('action', function($row){
+				->addColumn('action', function($row){ 
 					$btn = '
 							<div class="text-center">
 								<div class="btn-group">
-									<a href="#" class="edit btn btn-success btn-sm"> Edit </a>
-									<a href="#" class="btn btn-danger btn-sm"> Hapus </a>
+									<a href="'.route('users.edit', ['id' => $row->id]).'" class="edit btn btn-success btn-sm"> Edit </a>
+									<a href="'.route('users.destroy', ['id' => $row->id]).'" class="btn btn-danger btn-sm"> Hapus </a>
 								</div>
 							</div>
 							';
 					return $btn;
 				})
-				->rawColumns(['action']) 
+                ->addColumn('roles', function($row){
+                    $role = $row->getRoleNames(); 
+                    if ($role == '["Admin"]') {
+                        $btnRole = '<span class="badge badge-primary">Admin</span>';
+                        return $btnRole;
+                    } else {
+                        $btnRole = '<span class="badge badge-success">User</span>';
+                        return $btnRole;
+                    }
+                })
+				->rawColumns(['action','roles']) 
 				->make(true);
 		}
         return view('users');
@@ -62,8 +82,8 @@ class UserController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'username' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|same:confirm-password',
+            'email' => 'required|email',
+            'password' => 'same:confirm-password',
             'roles' => 'required'
         ]);
     
@@ -72,21 +92,49 @@ class UserController extends Controller
     
         $user = User::create($input);
         $user->assignRole($request->input('roles'));
+
+        $roles = $request->input('roles');
+
+        $userDt = User::select('id')->orderByDesc('id')->limit(1)->get();
+        $userID = $userDt[0];
+
+
+        switch ($roles) {
+            case 'Dokter':
+                $this->validate($request, [
+                    'name' => '',
+                    'nama' => '',
+                    'id_user' => ''
+                ]);
+            
+                $input = $request->all();
+                $input['nama'] = $request->input('name');
+                $input['id_user'] = $userID['id'];
+            
+                $user = Dokter::create($input);
+                break;
+
+            case 'Admin':
+                $this->validate($request, [
+                    'name' => '',
+                    'nama' => '',
+                    'id_user' => ''
+                ]);
+            
+                $input = $request->all();
+                $input['nama'] = $request->input('name');
+                $input['id_user'] = $userID['id'];
+            
+                $user = Administrator::create($input);
+                break;
+            
+            default:
+                # code...
+                break;
+        }
     
-        return redirect()->route('users.index')
-                        ->with('success','User created successfully');
-    }
-    
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $user = User::find($id);
-        return view('users.show',compact('user'));
+        return redirect()->route('users.index');
+        //                 ->with('success','User created successfully');
     }
     
     /**
@@ -97,11 +145,10 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = User::find($id);
-        $roles = Role::pluck('name','name')->all();
-        $userRole = $user->roles->pluck('name','name')->all();
+        $data['role'] = Role::all();
+        $data['user'] = User::find($id);
     
-        return view('users.edit',compact('user','roles','userRole'));
+        return view('usersEdit',$data);
     }
     
     /**
@@ -115,38 +162,70 @@ class UserController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'email' => 'required|email|unique:users,email,'.$id,
-            'password' => 'same:confirm-password',
+            'username' => 'required',
+            'email' => 'required|email',
             'roles' => 'required'
         ]);
     
         $input = $request->all();
-        if(!empty($input['password'])){ 
-            $input['password'] = Hash::make($input['password']);
-        }else{
-            $input = array_except($input,array('password'));    
-        }
-    
+
         $user = User::find($id);
         $user->update($input);
         DB::table('model_has_roles')->where('model_id',$id)->delete();
     
         $user->assignRole($request->input('roles'));
+
+        Dokter::where('id_user', $id)->delete();
+        Administrator::where('id_user', $id)->delete();
+
+        $roles = $request->input('roles');
+
+
+        switch ($roles) {
+            case 'Dokter':
+                $this->validate($request, [
+                    'name' => '',
+                    'nama' => '',
+                    'id_user' => ''
+                ]);
+            
+                $input = $request->all();
+                $input['nama'] = $request->input('name');
+                $input['id_user'] = $id;
+            
+                $user = Dokter::create($input);
+                break;
+
+            case 'Admin':
+                $this->validate($request, [
+                    'name' => '',
+                    'nama' => '',
+                    'id_user' => ''
+                ]);
+            
+                $input = $request->all();
+                $input['nama'] = $request->input('name');
+                $input['id_user'] = $id;
+            
+                $user = Administrator::create($input);
+                break;
+            
+            default:
+                # code...
+                break;
+        }
     
         return redirect()->route('users.index')
                         ->with('success','User updated successfully');
     }
     
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function destroy($id)
     {
         User::find($id)->delete();
-        return redirect()->route('users.index')
-                        ->with('success','User deleted successfully');
+        Dokter::where('id_user', $id)->delete();
+        Administrator::where('id_user', $id)->delete();
+            return redirect()->route('users.index')
+            ->with('success','User deleted successfully');
     }
 }

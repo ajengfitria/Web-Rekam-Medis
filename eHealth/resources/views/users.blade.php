@@ -24,7 +24,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-12">
-
+        
         <div class="card">
           <div class="card-header">
             <a href="{{ route('users.create') }}" class="btn btn-primary" >Tambah</a>
@@ -33,23 +33,25 @@
           <div class="card-body">
             <table id="example1" class="table table-bordered table-striped">
               <thead>
-              <tr>
-                <th>No</th>
-                <th>Nama</th>
-                <th>Email</th>
-                <th>Aksi</th>
-              </tr>
+                <tr>
+                  <th>No</th>
+                  <th>Nama</th>
+                  <th>Email</th>
+                  <th>Role</th>
+                  <th>Aksi</th>
+                </tr>
               </thead>
               <tbody>
-              
+                
               </tbody>
               <tfoot>
-              <tr>
-                <th>No</th>
-                <th>Nama</th>
-                <th>Email</th>
-                <th>Aksi</th>
-              </tr>
+                <tr>
+                  <th>No</th>
+                  <th>Nama</th>
+                  <th>Email</th>
+                  <th>Role</th>
+                  <th>Aksi</th>
+                </tr>
               </tfoot>
             </table>
           </div>
@@ -69,32 +71,36 @@
 @section('script')
 <!-- Page specific script -->
 <script>
-    $(function () {
-      $("#example1").DataTable({
-        "responsive": true, "lengthChange": false, "autoWidth": false,
-        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
-        "processing": true,
-        "serverSide": true,
-        "ajax": "{{ route('users.index') }}",
-        "columns": [
-            {
-                data: 'DT_RowIndex',
-                name: 'DT_RowIndex',
-            },
-            {
-                data: 'name',
-                name: 'name',
-            },
-            {
-                data: 'email',
-                name: 'email',
-            },
-            {
-                data: 'action',
-                name: 'action',
-            },
-        ]
-      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    });
-  </script>
-  @endsection
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
+      "processing": true,
+      "serverSide": true,
+      "ajax": "{{ route('users.index') }}",
+      "columns": [
+      {
+        data: 'DT_RowIndex',
+        name: 'DT_RowIndex',
+      },
+      {
+        data: 'name',
+        name: 'name',
+      },
+      {
+        data: 'email',
+        name: 'email',
+      },
+      {
+        data: 'roles',
+        name: 'roles',
+      },
+      {
+        data: 'action',
+        name: 'action',
+      },
+      ]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+  });
+</script>
+@endsection

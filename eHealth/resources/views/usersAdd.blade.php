@@ -33,7 +33,8 @@
           <!-- /.card-header -->
           <!-- form start -->
           <form method="post" action="{{ route('users.store')}}" class="form-horizontal">
-            @csrf
+            {{-- @csrf --}}
+            {{ csrf_field() }}
             <div class="card-body">
               <div class="form-group row">
                 <label for="inputName" class="col-sm-2 col-form-label">Nama</label>
@@ -50,7 +51,7 @@
               <div class="form-group row">
                 <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
                 <div class="col-sm-10">
-                  <input required type="email" class="form-control" id="inputEmail3" placeholder="Email" value="{{ old('email') }}">
+                  <input required type="email" name="email" class="form-control" id="inputEmail3" placeholder="Email" value="{{ old('email') }}">
                 </div>
               </div>
               <div class="form-group row">
