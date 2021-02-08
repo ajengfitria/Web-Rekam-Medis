@@ -32,7 +32,7 @@
           </div>
           <!-- /.card-header -->
           <!-- form start -->
-          <form method="post" action="<?php echo e(route('users.updateAkunDokter',['id' => $user->id])); ?>" class="form-horizontal">
+          <form method="post" action="<?php echo e(route('users.updateAkunAdmin',['id' => $user->id])); ?>" class="form-horizontal">
             <?php echo method_field('PUT'); ?>
           <?php echo csrf_field(); ?>
             <div class="card-body">
@@ -100,6 +100,7 @@ unset($__errorArgs, $__bag); ?>
             <!-- /.card-body -->
             <div class="card-footer">
               <button type="submit" class="btn btn-info">Edit</button>
+              <a href="<?php echo e(route('users.showAkun', ['id' => Auth::user()->id])); ?>" class="btn btn-default float-right">Batal</a>
             </div>
             <!-- /.card-footer -->
           </form>

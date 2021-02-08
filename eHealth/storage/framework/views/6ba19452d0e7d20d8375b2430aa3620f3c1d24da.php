@@ -84,6 +84,7 @@ unset($__errorArgs, $__bag); ?>
                         <!-- /.card-body -->
                         <div class="card-footer">
                             <button type="submit" class="btn btn-info">Edit</button>
+                            <a href="<?php echo e(route('users.index')); ?>" class="btn btn-default float-right">Batal</a>
                         </div>
                         <!-- /.card-footer -->
                     </form>

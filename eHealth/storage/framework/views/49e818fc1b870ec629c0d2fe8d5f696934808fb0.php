@@ -41,7 +41,7 @@
                   <select class="form-control" name="id_pasien" required>
                     <option value="">Pilih Pasien</option>
                     <?php $__currentLoopData = $pasien; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $pasienDt): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <option value="<?php echo e($pasienDt->nik); ?>" <?php echo e((old('id_pasien') == $pasienDt->nik) ? 'selected' : ''); ?>><?php echo e($pasienDt->nik); ?> - <?php echo e($pasienDt->nama); ?></option>
+                    <option value="<?php echo e($pasienDt->id); ?>" <?php echo e((old('id_pasien') == $pasienDt->id) ? 'selected' : ''); ?>><?php echo e($pasienDt->nik); ?> - <?php echo e($pasienDt->nama); ?></option>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                   </select>
                   <?php $__errorArgs = ['id_pasien'];

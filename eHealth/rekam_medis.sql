@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 07, 2021 at 06:24 AM
--- Server version: 10.3.16-MariaDB
--- PHP Version: 7.3.7
+-- Waktu pembuatan: 09 Feb 2021 pada 00.29
+-- Versi server: 10.1.37-MariaDB
+-- Versi PHP: 7.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,42 +25,58 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `administrator`
+-- Struktur dari tabel `administrator`
 --
 
 CREATE TABLE `administrator` (
-  `id_adm` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `nama` varchar(30) NOT NULL,
-  `jenkel` enum('L','P') NOT NULL,
-  `telp` int(11) NOT NULL,
-  `alamat` text NOT NULL,
+  `jenkel` enum('Pria','Wanita') DEFAULT NULL,
+  `telp` varchar(11) DEFAULT NULL,
+  `alamat` text,
   `email` varchar(50) NOT NULL,
-  `img` varchar(30) NOT NULL,
-  `id_user` int(11) NOT NULL
+  `id_user` int(11) NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `administrator`
+--
+
+INSERT INTO `administrator` (`id`, `nama`, `jenkel`, `telp`, `alamat`, `email`, `id_user`, `updated_at`, `created_at`) VALUES
+(4, 'Ajeng Rahma', 'Wanita', '98765', 'Clp', 'admin@role.test', 5, '2021-02-08 16:26:52', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `dokter`
+-- Struktur dari tabel `dokter`
 --
 
 CREATE TABLE `dokter` (
-  `id_dokter` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `nama` varchar(30) NOT NULL,
-  `jenkel` enum('L','P','','') NOT NULL,
-  `alamat` text NOT NULL,
-  `telp` int(11) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `spesialis` varchar(30) NOT NULL,
-  `img` varchar(30) NOT NULL,
-  `id_user` int(11) NOT NULL
+  `jenkel` enum('Pria','Wanita','','') DEFAULT NULL,
+  `alamat` text,
+  `telp` varchar(30) DEFAULT NULL,
+  `spesialis` varchar(30) DEFAULT NULL,
+  `id_user` int(11) NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `dokter`
+--
+
+INSERT INTO `dokter` (`id`, `nama`, `jenkel`, `alamat`, `telp`, `spesialis`, `id_user`, `updated_at`, `created_at`) VALUES
+(14, 'Titiana', 'Wanita', 'Cilacap', '098765567', 'Organ Dalam', 41, '2021-02-08 15:56:30', '2021-02-08 04:20:55'),
+(15, 'Dokter Test', 'Pria', 'Pwt', '345454', '332', 42, '2021-02-08 05:39:06', '2021-02-08 05:04:32');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `failed_jobs`
+-- Struktur dari tabel `failed_jobs`
 --
 
 CREATE TABLE `failed_jobs` (
@@ -69,26 +85,35 @@ CREATE TABLE `failed_jobs` (
   `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kartu_kes`
+-- Struktur dari tabel `kartu_kes`
 --
 
 CREATE TABLE `kartu_kes` (
-  `id_kartu` int(11) NOT NULL,
-  `nama` int(11) NOT NULL,
-  `jenis` int(11) NOT NULL,
-  `kelas` varchar(10) NOT NULL
+  `id` int(11) NOT NULL,
+  `nama` varchar(30) NOT NULL,
+  `jenis` varchar(30) NOT NULL,
+  `kelas` int(11) NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `kartu_kes`
+--
+
+INSERT INTO `kartu_kes` (`id`, `nama`, `jenis`, `kelas`, `updated_at`, `created_at`) VALUES
+(4, 'BPJS', 'Ketenagakerjaan', 3, '2021-02-08 15:45:21', '2021-02-08 15:45:21');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `migrations`
+-- Struktur dari tabel `migrations`
 --
 
 CREATE TABLE `migrations` (
@@ -98,7 +123,7 @@ CREATE TABLE `migrations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `migrations`
+-- Dumping data untuk tabel `migrations`
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
@@ -110,7 +135,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `model_has_permissions`
+-- Struktur dari tabel `model_has_permissions`
 --
 
 CREATE TABLE `model_has_permissions` (
@@ -122,60 +147,72 @@ CREATE TABLE `model_has_permissions` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `model_has_roles`
+-- Struktur dari tabel `model_has_roles`
 --
 
 CREATE TABLE `model_has_roles` (
-  `role_id` bigint(20) UNSIGNED NOT NULL,
+  `role_id` int(10) UNSIGNED NOT NULL,
   `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `model_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `model_has_roles`
+-- Dumping data untuk tabel `model_has_roles`
 --
 
 INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
-(2, 'App\\User', 4);
+(2, 'App\\User', 5),
+(1, 'App\\User', 41),
+(1, 'App\\User', 42);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `obat`
+-- Struktur dari tabel `obat`
 --
 
 CREATE TABLE `obat` (
-  `id_obat` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `nama` varchar(30) NOT NULL,
   `kategori` varchar(30) NOT NULL,
-  `tgl_masuk` date NOT NULL,
-  `stok` int(11) NOT NULL
+  `tgl_masuk` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `stok` int(11) NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `obat`
+--
+
+INSERT INTO `obat` (`id`, `nama`, `kategori`, `tgl_masuk`, `stok`, `updated_at`, `created_at`) VALUES
+(1, 'Panadol', 'Tablet', '2021-01-31 17:00:00', 30, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pasien`
+-- Struktur dari tabel `pasien`
 --
 
 CREATE TABLE `pasien` (
-  `id_pasien` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `nama` varchar(30) NOT NULL,
-  `jenkel` enum('L','P','','') NOT NULL,
+  `jenkel` enum('Pria','Wanita','','') NOT NULL,
   `alamat` text NOT NULL,
   `pekerjaan` varchar(20) NOT NULL,
-  `telp` int(11) NOT NULL,
+  `telp` varchar(30) NOT NULL,
   `nik` int(11) NOT NULL,
   `tgl_lahir` date NOT NULL,
-  `img` varchar(30) NOT NULL,
   `id_kartu` int(11) NOT NULL,
-  `no_kartu` int(11) NOT NULL
+  `no_kartu` int(11) NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `password_resets`
+-- Struktur dari tabel `password_resets`
 --
 
 CREATE TABLE `password_resets` (
@@ -185,7 +222,7 @@ CREATE TABLE `password_resets` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `password_resets`
+-- Dumping data untuk tabel `password_resets`
 --
 
 INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
@@ -194,7 +231,7 @@ INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `permissions`
+-- Struktur dari tabel `permissions`
 --
 
 CREATE TABLE `permissions` (
@@ -206,7 +243,7 @@ CREATE TABLE `permissions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `permissions`
+-- Dumping data untuk tabel `permissions`
 --
 
 INSERT INTO `permissions` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
@@ -237,29 +274,32 @@ INSERT INTO `permissions` (`id`, `name`, `guard_name`, `created_at`, `updated_at
 (25, 'kartu-kes-list', 'web', '2021-02-06 20:49:31', '2021-02-06 20:49:31'),
 (26, 'kartu-kes-create', 'web', '2021-02-06 20:49:31', '2021-02-06 20:49:31'),
 (27, 'kartu-kes-edit', 'web', '2021-02-06 20:49:31', '2021-02-06 20:49:31'),
-(28, 'kartu-kes-delete', 'web', '2021-02-06 20:49:32', '2021-02-06 20:49:32');
+(28, 'kartu-kes-delete', 'web', '2021-02-06 20:49:32', '2021-02-06 20:49:32'),
+(26, 'dokter-all', 'web', NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rekam_medis`
+-- Struktur dari tabel `rekam_medis`
 --
 
 CREATE TABLE `rekam_medis` (
-  `id_rekam` int(11) NOT NULL,
-  `tgl_rekam` datetime NOT NULL,
+  `id` int(11) NOT NULL,
+  `tgl_rekam` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `id_pasien` int(11) NOT NULL,
   `id_dokter` int(11) NOT NULL,
   `jenis_pelayanan` varchar(30) NOT NULL,
   `keluhan` text NOT NULL,
   `diagnosa` text NOT NULL,
-  `tindakan` text NOT NULL
+  `tindakan` text NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `roles`
+-- Struktur dari tabel `roles`
 --
 
 CREATE TABLE `roles` (
@@ -271,16 +311,17 @@ CREATE TABLE `roles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `roles`
+-- Dumping data untuk tabel `roles`
 --
 
 INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
-(2, 'Admin', 'web', '2021-02-06 21:30:40', '2021-02-06 21:30:40');
+(1, 'Dokter', 'web', NULL, NULL),
+(2, 'Admin', 'web', NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `role_has_permissions`
+-- Struktur dari tabel `role_has_permissions`
 --
 
 CREATE TABLE `role_has_permissions` (
@@ -289,7 +330,7 @@ CREATE TABLE `role_has_permissions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `role_has_permissions`
+-- Dumping data untuk tabel `role_has_permissions`
 --
 
 INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
@@ -325,260 +366,211 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ruang`
+-- Struktur dari tabel `ruang`
 --
 
 CREATE TABLE `ruang` (
-  `id_ruang` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `nama` varchar(30) NOT NULL,
   `no` int(11) NOT NULL,
   `kelas` varchar(10) NOT NULL,
-  `status` varchar(30) NOT NULL
+  `status` varchar(30) NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
---
-
-CREATE TABLE `user` (
-  `id_user` int(11) NOT NULL,
-  `role` varchar(10) NOT NULL,
-  `username` varchar(20) NOT NULL,
-  `pass` text NOT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `users`
+-- Struktur dari tabel `users`
 --
 
 CREATE TABLE `users` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` int(20) UNSIGNED NOT NULL,
+  `username` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `users`
+-- Dumping data untuk tabel `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(4, 'Ajeng Fitria', 'ajengfitria80@gmail.com', NULL, '$2y$10$yGLMfQK8tnehtN9/hPOKjOXE26V7HfeAhtS0Xjee8zHCjNx4j7pKa', NULL, '2021-02-06 21:30:40', '2021-02-06 21:30:40');
+INSERT INTO `users` (`id`, `username`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `updated_at`, `created_at`) VALUES
+(5, 'ajengfitriaaaaaa', 'Ajeng Rahma', 'admin@role.test', NULL, '$2y$10$oVzwtgXN9h4GpAwx7.qSeuCk6ab/cxJXAobhLl08Xv54ew9hYbtYq', NULL, '2021-02-08 16:26:52', '2021-02-07 19:11:28'),
+(41, 'titi', 'Titiana', 'titi@gm.com', NULL, '$2y$10$s8oluzehofcfjGIh.CmEUOZPLb.dCmyftrvzJclEfXxxnQrc/yzKa', NULL, '2021-02-08 04:20:55', '2021-02-08 04:20:55'),
+(42, 'dokter', 'Dokter Test', 'dokter@role.test', NULL, '$2y$10$vufkE031SvE8i3eoH.1xGuPI/Z3uWDMuzGEh6Pyb/EnGnQsxvLM7K', NULL, '2021-02-08 05:39:06', '2021-02-08 05:04:32');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `administrator`
+-- Indeks untuk tabel `administrator`
 --
 ALTER TABLE `administrator`
-  ADD PRIMARY KEY (`id_adm`);
+  ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `dokter`
+-- Indeks untuk tabel `dokter`
 --
 ALTER TABLE `dokter`
-  ADD PRIMARY KEY (`id_dokter`);
+  ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `failed_jobs`
+-- Indeks untuk tabel `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `migrations`
+-- Indeks untuk tabel `kartu_kes`
+--
+ALTER TABLE `kartu_kes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `model_has_permissions`
+-- Indeks untuk tabel `model_has_permissions`
 --
 ALTER TABLE `model_has_permissions`
-  ADD PRIMARY KEY (`permission_id`,`model_id`,`model_type`),
-  ADD KEY `model_has_permissions_model_id_model_type_index` (`model_id`,`model_type`);
+  ADD PRIMARY KEY (`permission_id`);
 
 --
--- Indexes for table `model_has_roles`
---
-ALTER TABLE `model_has_roles`
-  ADD PRIMARY KEY (`role_id`,`model_id`,`model_type`),
-  ADD KEY `model_has_roles_model_id_model_type_index` (`model_id`,`model_type`);
-
---
--- Indexes for table `obat`
+-- Indeks untuk tabel `obat`
 --
 ALTER TABLE `obat`
-  ADD PRIMARY KEY (`id_obat`);
+  ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `pasien`
+-- Indeks untuk tabel `pasien`
 --
 ALTER TABLE `pasien`
-  ADD PRIMARY KEY (`id_pasien`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_kartu` (`id_kartu`);
 
 --
--- Indexes for table `password_resets`
+-- Indeks untuk tabel `password_resets`
 --
 ALTER TABLE `password_resets`
-  ADD KEY `password_resets_email_index` (`email`);
+  ADD KEY `password_resets_email_index` (`email`(191));
 
 --
--- Indexes for table `permissions`
---
-ALTER TABLE `permissions`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `permissions_name_guard_name_unique` (`name`,`guard_name`);
-
---
--- Indexes for table `rekam_medis`
+-- Indeks untuk tabel `rekam_medis`
 --
 ALTER TABLE `rekam_medis`
-  ADD PRIMARY KEY (`id_rekam`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_dokter` (`id_dokter`),
+  ADD KEY `id_pasien` (`id_pasien`);
 
 --
--- Indexes for table `roles`
+-- Indeks untuk tabel `roles`
 --
 ALTER TABLE `roles`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `roles_name_guard_name_unique` (`name`,`guard_name`);
+  ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `role_has_permissions`
+-- Indeks untuk tabel `role_has_permissions`
 --
 ALTER TABLE `role_has_permissions`
   ADD PRIMARY KEY (`permission_id`,`role_id`),
   ADD KEY `role_has_permissions_role_id_foreign` (`role_id`);
 
 --
--- Indexes for table `ruang`
+-- Indeks untuk tabel `ruang`
 --
 ALTER TABLE `ruang`
-  ADD PRIMARY KEY (`id_ruang`);
+  ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id_user`);
-
---
--- Indexes for table `users`
+-- Indeks untuk tabel `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `users_email_unique` (`email`);
+  ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `administrator`
+-- AUTO_INCREMENT untuk tabel `administrator`
 --
 ALTER TABLE `administrator`
-  MODIFY `id_adm` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `dokter`
+-- AUTO_INCREMENT untuk tabel `dokter`
 --
 ALTER TABLE `dokter`
-  MODIFY `id_dokter` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT for table `failed_jobs`
+-- AUTO_INCREMENT untuk tabel `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `migrations`
+-- AUTO_INCREMENT untuk tabel `kartu_kes`
 --
-ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+ALTER TABLE `kartu_kes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `obat`
+-- AUTO_INCREMENT untuk tabel `obat`
 --
 ALTER TABLE `obat`
-  MODIFY `id_obat` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `pasien`
+-- AUTO_INCREMENT untuk tabel `pasien`
 --
 ALTER TABLE `pasien`
-  MODIFY `id_pasien` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `permissions`
---
-ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
-
---
--- AUTO_INCREMENT for table `rekam_medis`
+-- AUTO_INCREMENT untuk tabel `rekam_medis`
 --
 ALTER TABLE `rekam_medis`
-  MODIFY `id_rekam` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `roles`
+-- AUTO_INCREMENT untuk tabel `roles`
 --
 ALTER TABLE `roles`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `ruang`
+-- AUTO_INCREMENT untuk tabel `ruang`
 --
 ALTER TABLE `ruang`
-  MODIFY `id_ruang` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `user`
---
-ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
--- Constraints for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Constraints for table `model_has_permissions`
+-- Ketidakleluasaan untuk tabel `pasien`
 --
-ALTER TABLE `model_has_permissions`
-  ADD CONSTRAINT `model_has_permissions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `model_has_roles`
---
-ALTER TABLE `model_has_roles`
-  ADD CONSTRAINT `model_has_roles_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `role_has_permissions`
---
-ALTER TABLE `role_has_permissions`
-  ADD CONSTRAINT `role_has_permissions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `role_has_permissions_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
+ALTER TABLE `pasien`
+  ADD CONSTRAINT `pasien_ibfk_1` FOREIGN KEY (`id_kartu`) REFERENCES `kartu_kes` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

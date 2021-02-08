@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\RekamMedis;
 use App\Pasien;
+use App\Dokter;
+use App\User;
+use App\KartuKesehatan;
 use DataTables;
 use DB;
 use Hash;
@@ -94,7 +97,24 @@ class RekamMedisController extends Controller
     public function show($id)
     {
         //
+        $data['rekamMedis'] = RekamMedis::find($id);
+
+        $pasienGetId = RekamMedis::select('id_pasien')->where('id', $id)->limit(1)->get();
+        $pasienId = $pasienGetId[0];
+        $pasienId = $pasienId['id_pasien'];
+        $data['pasien'] = Pasien::find($pasienId);
         
+        $dokterGetId = RekamMedis::select('id_dokter')->where('id', $id)->limit(1)->get();
+        $dokterId = $dokterGetId[0];
+        $dokterId = $dokterId['id_dokter'];
+        $data['dokter'] = User::find($dokterId);
+
+        $kartuGetId = Pasien::select('id_kartu')->where('id', $pasienId)->limit(1)->get();
+        $kartuId = $kartuGetId[0];
+        $kartuId = $kartuId['id_kartu'];
+        $data['kartuKes'] = KartuKesehatan::find($kartuId);
+    
+        return view('rekamMedisDetail',$data);
     }
 
     /**

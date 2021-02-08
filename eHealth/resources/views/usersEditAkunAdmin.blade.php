@@ -92,6 +92,7 @@
             <!-- /.card-body -->
             <div class="card-footer">
               <button type="submit" class="btn btn-info">Edit</button>
+              <a href="{{route('users.showAkun', ['id' => Auth::user()->id])}}" class="btn btn-default float-right">Batal</a>
             </div>
             <!-- /.card-footer -->
           </form>

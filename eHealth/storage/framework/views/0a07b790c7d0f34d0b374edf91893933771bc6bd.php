@@ -10,8 +10,8 @@
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="<?php echo e(route('home')); ?>">Home</a></li>
-            <li class="breadcrumb-item active">Akun</li>
+            <li class="breadcrumb-item"><a href="#">Navigasi</a></li>
+            <li class="breadcrumb-item active">Akun Saya</li>
           </ol>
         </div>
       </div>
@@ -55,7 +55,7 @@
                     </li>
                   </ul>
   
-                  <a href="<?php echo e(route('users.editAkunAdmin',['id' => $user->id])); ?>" class="btn btn-primary btn-block"><b>Edit</b></a>
+                  <a href="<?php echo e(route('users.editAkun',['id' => $user->id])); ?>" class="btn btn-primary btn-block"><b>Edit</b></a>
                 </div>
                 <!-- /.card-body -->
               </div>

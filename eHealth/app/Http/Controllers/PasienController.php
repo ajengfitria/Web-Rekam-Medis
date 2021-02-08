@@ -30,8 +30,8 @@ class PasienController extends Controller
 					$btn = '
 							<div class="text-center">
 								<div class="btn-group">
-									<a href="'.route('pasien.show', ['id' => $row->id]).'" class="edit btn btn-primary btn-sm"> Detail </a>
-                                    <a href="'.route('pasien.edit', ['id' => $row->id]).'" class="edit btn btn-success btn-sm"> Edit </a>
+									<a href="'.route('pasien.show', ['id' => $row->id]).'" class="btn btn-primary btn-sm"> Detail </a>
+                                    <a href="'.route('pasien.edit', ['id' => $row->id]).'" class="btn btn-success btn-sm"> Edit </a>
 									<a href="'.route('pasien.destroy', ['id' => $row->id]).'" class="btn btn-danger btn-sm"> Hapus </a>
 								</div>
 							</div>
@@ -102,13 +102,15 @@ class PasienController extends Controller
         $pasienIdKartu = $pasienIdKartu['id_kartu'];
         $data['kartuKes'] = KartuKesehatan::find($pasienIdKartu);
 
-        // $rekamMedisGetId = RekamMedis::select('id')->where('id_dokter', $id)->limit(1)->get();
-        // $rekamMedisId = $rekamMedisGetId[0];
-        // $rekamMedisId = $rekamMedisId['id'];
-        // $data['rekamMedis'] = RekamMedis::find($rekamMedisId);
+        $rekamMedisGetId = RekamMedis::select('id_dokter')->where('id', $id)->limit(1)->get();
+        $dokterId = $rekamMedisGetId[0];
+        $dokterId = $dokterId['id'];
+        $data['dokter'] = Dokter::find($dokterId);
+        $dokter = Dokter::select('nama')->where('id', $dokterId)->get();
+        
 
         if ($request->ajax()) {
-            $data = DB::table('rekam_medis')->where('id_pasien', $id)->get();
+            $data = RekamMedis::where('id_pasien', $id)->get();
 			return Datatables::of($data)
 				->addIndexColumn()
 				->addColumn('action', function($row){
@@ -188,6 +190,7 @@ class PasienController extends Controller
     {
         //
         Pasien::where('id', $id)->delete();
+        RekamMedis::where('id_pasien', $id)->delete();
             return redirect()->route('pasien.index')
             ->with('success','Pasien deleted successfully');
     }

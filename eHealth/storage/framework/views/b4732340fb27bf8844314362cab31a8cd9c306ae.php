@@ -11,7 +11,8 @@
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="#">Navigasi</a></li>
-          <li class="breadcrumb-item active">Pasien</li>
+          <li class="breadcrumb-item"><a href="<?php echo e(route('pasien.index')); ?>">Pasien</a></li>
+          <li class="breadcrumb-item active">Detail Pasien</li>
         </ol>
       </div>
     </div>
@@ -68,9 +69,8 @@
                     <tr>
                       <th>No</th>
                       <th>Tanggal</th>
-                      <th>Pasien</th>
-                      <th>Dokter</th>
                       <th>Jenis Pelayanan</th>
+                      <th>Keluhan</th>
                       <th>Aksi</th>
                     </tr>
                     </thead>
@@ -81,9 +81,8 @@
                     <tr>
                       <th>No</th>
                       <th>Tanggal</th>
-                      <th>Pasien</th>
-                      <th>Dokter</th>
                       <th>Jenis Pelayanan</th>
+                      <th>Keluhan</th>
                       <th>Aksi</th>
                     </tr>
                     </tfoot>
@@ -96,7 +95,7 @@
             <!-- this row will not appear when printing -->
             <div class="row no-print">
               <div class="col-12">
-                <a href="invoice-print.html" rel="noopener" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
+                <a href="#" onclick="window.print()" rel="noopener" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
               </div>
             </div>
           </div>
@@ -130,12 +129,8 @@
                 name: 'tgl_rekam',
             },
             {
-                data: 'id_pasien',
-                name: 'id_pasien',
-            },
-            {
-                data: 'id_dokter',
-                name: 'id_dokter',
+                data: 'keluhan',
+                name: 'keluhan',
             },
             {
                 data: 'jenis_pelayanan',

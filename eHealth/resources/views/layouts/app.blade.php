@@ -45,7 +45,7 @@
 </head>
 @guest
 @if (Route::has('login'))
-<body class="hold-transition login-page">
+<body class="hold-transition login-page" style="background-image: url('dist/img/bg2.jpg'); background-size: cover;">
     @yield('content')
 </body>
 @endif
@@ -62,7 +62,7 @@
             @include('layouts.sidebar')
             <!-- Left Sidebar End -->
             
-            <div class="content-wrapper">
+            <div class="content-wrapper"  style="background-image: url('dist/img/bg4.jpg'); background-size: cover;">
                 @yield('content')
             </div>
             <!-- End Content -->

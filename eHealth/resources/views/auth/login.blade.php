@@ -77,7 +77,7 @@
         <a href="../../index2.html" class="h1"><b>e</b>Health</a>
     </div>
     <div class="card-body">
-      <p class="login-box-msg">Sign in to start your session</p>
+      <p class="login-box-msg">Hello ! Please sign in to start your session</p>
 
       <form method="POST" action="{{ route('login') }}">
         @csrf

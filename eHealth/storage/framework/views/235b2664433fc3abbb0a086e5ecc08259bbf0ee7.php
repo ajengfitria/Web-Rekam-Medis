@@ -43,7 +43,7 @@
 </head>
 <?php if(auth()->guard()->guest()): ?>
 <?php if(Route::has('login')): ?>
-<body class="hold-transition login-page">
+<body class="hold-transition login-page" style="background-image: url('dist/img/bg2.jpg'); background-size: cover;">
     <?php echo $__env->yieldContent('content'); ?>
 </body>
 <?php endif; ?>
@@ -60,7 +60,7 @@
             <?php echo $__env->make('layouts.sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
             <!-- Left Sidebar End -->
             
-            <div class="content-wrapper">
+            <div class="content-wrapper"  style="background-image: url('dist/img/bg4.jpg'); background-size: cover;">
                 <?php echo $__env->yieldContent('content'); ?>
             </div>
             <!-- End Content -->

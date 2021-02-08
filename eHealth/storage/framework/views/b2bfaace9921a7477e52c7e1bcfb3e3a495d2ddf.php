@@ -10,8 +10,8 @@
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-          <li class="breadcrumb-item"><a href="<?php echo e(route('home')); ?>">Home</a></li>
-          <li class="breadcrumb-item"><a href="#">Pasien</a></li>
+          <li class="breadcrumb-item"><a href="#">Navigasi</a></li>
+          <li class="breadcrumb-item"><a href="<?php echo e(route('pasien.index')); ?>">Pasien</a></li>
           <li class="breadcrumb-item active">Input</li>
         </ol>
       </div>
@@ -131,6 +131,7 @@ unset($__errorArgs, $__bag); ?>
             <!-- /.card-body -->
             <div class="card-footer">
               <button type="submit" class="btn btn-info">Tambah</button>
+              <a href="<?php echo e(route('pasien.index')); ?>" class="btn btn-default float-right">Batal</a>
             </div>
             <!-- /.card-footer -->
           </form>

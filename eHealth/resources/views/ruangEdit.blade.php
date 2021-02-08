@@ -10,8 +10,8 @@
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-          <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
-          <li class="breadcrumb-item"><a href="#">Ruang</a></li>
+          <li class="breadcrumb-item"><a href="#">Navigasi</a></li>
+          <li class="breadcrumb-item"><a href="{{route('ruang.index')}}">Ruang</a></li>
           <li class="breadcrumb-item active">Edit</li>
         </ol>
       </div>
@@ -74,6 +74,7 @@
             <!-- /.card-body -->
             <div class="card-footer">
               <button type="submit" class="btn btn-info">Edit</button>
+              <a href="{{ route('ruang.index') }}" class="btn btn-default float-right">Batal</a>
             </div>
             <!-- /.card-footer -->
           </form>

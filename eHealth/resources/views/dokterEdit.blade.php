@@ -10,7 +10,7 @@
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-          <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
+          <li class="breadcrumb-item"><a href="#">Navigasi</a></li>
           <li class="breadcrumb-item"><a href="{{route('dokter.index')}}">Dokter</a></li>
           <li class="breadcrumb-item active">Edit</li>
         </ol>
@@ -80,6 +80,7 @@
             <!-- /.card-body -->
             <div class="card-footer">
               <button type="submit" class="btn btn-info">Edit</button>
+              <a href="{{ route('dokter.index') }}" class="btn btn-default float-right">Batal</a>
             </div>
             <!-- /.card-footer -->
           </form>

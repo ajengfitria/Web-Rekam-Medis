@@ -10,8 +10,8 @@
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-          <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
-          <li class="breadcrumb-item"><a href="#">Rekam Medis</a></li>
+          <li class="breadcrumb-item"><a href="#">Navigasi</a></li>
+          <li class="breadcrumb-item"><a href="{{route('rekamMedis.index')}}">Rekam Medis</a></li>
           <li class="breadcrumb-item active">Input</li>
         </ol>
       </div>
@@ -41,7 +41,7 @@
                   <select class="form-control" name="id_pasien" required>
                     <option value="">Pilih Pasien</option>
                     @foreach ($pasien as $pasienDt)
-                    <option value="{{ $pasienDt->nik }}" {{ (old('id_pasien') == $pasienDt->nik) ? 'selected' : '' }}>{{ $pasienDt->nik }} - {{ $pasienDt->nama }}</option>
+                    <option value="{{ $pasienDt->id }}" {{ (old('id_pasien') == $pasienDt->id) ? 'selected' : '' }}>{{ $pasienDt->nik }} - {{ $pasienDt->nama }}</option>
                     @endforeach
                   </select>
                   @error('id_pasien')
@@ -78,6 +78,7 @@
             <!-- /.card-body -->
             <div class="card-footer">
               <button type="submit" class="btn btn-info">Tambah</button>
+              <a href="{{ route('rekamMedis.index') }}" class="btn btn-default float-right">Batal</a>
             </div>
             <!-- /.card-footer -->
           </form>
