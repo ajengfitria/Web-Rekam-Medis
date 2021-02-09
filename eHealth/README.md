@@ -39,9 +39,17 @@ Website ini memiliki 2 sisi pengguna yaitu administrator dan dokter. Berikut mer
 - Dashboard template : [Admin LTE v.3](https://adminlte.io/)
 - Database : [mysql](https://www.mysql.com/)
 
-## Preview
+## Preview Fitur
 - Login 
 ![Screenshot (268)](https://user-images.githubusercontent.com/30403009/107308936-214ca880-6abc-11eb-8339-cc8bb9295d6c.png)
 
 - Dashboard Administrator
 ![Screenshot (269)](https://user-images.githubusercontent.com/30403009/107309277-b780ce80-6abc-11eb-9f33-2abf022ec835.png)
+
+- Dokter Dashboard
+![Screenshot (274)](https://user-images.githubusercontent.com/30403009/107310492-22cba000-6abf-11eb-8968-ae27b7087c0a.png)
+
+- Pasien Detail
+![Screenshot (273)](https://user-images.githubusercontent.com/30403009/107310609-573f5c00-6abf-11eb-8590-3d17de667f1e.png)
+
+
