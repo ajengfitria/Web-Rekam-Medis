@@ -42,3 +42,6 @@ Website ini memiliki 2 sisi pengguna yaitu administrator dan dokter. Berikut mer
 ## Preview
 - Login 
 ![Screenshot (268)](https://user-images.githubusercontent.com/30403009/107308936-214ca880-6abc-11eb-8339-cc8bb9295d6c.png)
+
+- Dashboard Administrator
+![Screenshot (269)](https://user-images.githubusercontent.com/30403009/107309277-b780ce80-6abc-11eb-9f33-2abf022ec835.png)
