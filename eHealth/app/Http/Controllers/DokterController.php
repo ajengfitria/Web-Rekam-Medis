@@ -32,7 +32,7 @@ class DokterController extends Controller
 					$btn = '
 							<div class="text-center">
 								<div class="btn-group">
-									<a href="'.route('dokter.show', ['id' => $row->id]).'" class="btn btn-primary btn-sm"> Detail </a>
+									
 									<a href="'.route('dokter.edit', ['id' => $row->id]).'" class="btn btn-success btn-sm"> Edit </a>
 									<a href="'.route('dokter.destroy', ['id' => $row->id]).'" class="btn btn-danger btn-sm"> Hapus </a>
 								</div>
