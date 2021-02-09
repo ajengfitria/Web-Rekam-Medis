@@ -33,7 +33,7 @@ Website ini memiliki 2 sisi pengguna yaitu administrator dan dokter. Berikut mer
 ## Teknologi Yang Digunakan
 
 - Backend: [PHP v 7.4](https://www.php.net/downloads.php)
-- Laravel version : [Laravel 7](https://laravel.com/docs/7.x/releases)
+- Framework PHP : Laravel [Laravel 7](https://laravel.com/docs/7.x/releases)
 - Library login : [Spatie](https://github.com/spatie/laravel-permission).
 - Library datatable : [Yajra Datatable v 9.15](https://github.com/yajra/laravel-datatables)
 - Dashboard template : [Admin LTE v.3](https://adminlte.io/)
