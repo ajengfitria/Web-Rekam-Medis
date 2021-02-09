@@ -38,6 +38,7 @@ Website ini memiliki 2 sisi pengguna yaitu administrator dan dokter. Berikut mer
 - Library datatable : [Yajra Datatable v 9.15](https://github.com/yajra/laravel-datatables)
 - Dashboard template : [Admin LTE v.3](https://adminlte.io/)
 - Database : [mysql](https://www.mysql.com/)
+- Scafolding auth : Laravel ui
 
 ## Preview Fitur
 - Login 
