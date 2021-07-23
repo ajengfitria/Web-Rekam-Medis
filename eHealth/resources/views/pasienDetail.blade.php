@@ -51,8 +51,8 @@
               </div>
               <div class="col-sm-4 invoice-col">
                 <br>
-                <b>Kartu :</b> {{$pasien->nama}}<br>
-                <b>No Kartu :</b> {{$kartuKes->nama}}<br>
+                <b>Kartu :</b> {{$kartuKes->nama}}<br>
+                <b>No Kartu :</b> {{$pasien->no_kartu}}<br>
                 <b>Telepon :</b> {{$pasien->telp}}<br>
                 <b>Alamat :</b> {{$pasien->alamat}}<br>
               </div>

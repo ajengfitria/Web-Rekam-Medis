@@ -8,6 +8,7 @@ use App\Pasien;
 use App\KartuKesehatan;
 use App\Dokter;
 use App\RekamMedis;
+use App\User;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -85,11 +86,11 @@ class PasienController extends Controller
         $pasienIdKartu = $pasienIdKartu['id_kartu'];
         $data['kartuKes'] = KartuKesehatan::find($pasienIdKartu);
 
-        $rekamMedisGetId = RekamMedis::select('id_dokter')->where('id', $id)->limit(1)->get();
+        $rekamMedisGetId = RekamMedis::select('id_dokter')->where('id_pasien', $id)->limit(1)->get();
         $dokterId = $rekamMedisGetId[0];
         $dokterId = $dokterId['id'];
-        $data['dokter'] = Dokter::find($dokterId);
-        $dokter = Dokter::select('nama')->where('id', $dokterId)->get();
+        $data['dokter'] = User::find($dokterId);
+        User::select('name')->where('id', $dokterId)->get();
 
 
         if ($request->ajax()) {
