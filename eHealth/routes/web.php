@@ -78,6 +78,6 @@ Route::group(['middleware' => ['auth']], function() {
     Route::put('/users/update/{id}','UserController@update')->name('users.update');
     Route::get('/akun/{id}', 'UserController@view_profile')->name('users.view_profile');
     Route::put('/akun/updateAkun/{id}','UserController@update_admin_profile')->name('users.update_admin_profile');
-    Route::get('/akun/editAkun/{id}', 'UserController@edit_admin_profile')->name('users.editAkun');
+    Route::get('/akun/editAkun/{id}', 'UserController@edit_admin_profile')->name('users.edit_admin_profile');
     
 });

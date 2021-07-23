@@ -55,7 +55,7 @@
                     </li>
                   </ul>
   
-                  <a href="{{ route('users.editAkun',['id' => $user->id]) }}" class="btn btn-primary btn-block"><b>Edit</b></a>
+                  <a href="{{ route('users.edit_admin_profile',['id' => $user->id]) }}" class="btn btn-primary btn-block"><b>Edit</b></a>
                 </div>
                 <!-- /.card-body -->
               </div>
@@ -110,7 +110,7 @@
                     </li>
                   </ul>
   
-                  <a href="{{ route('users.editAkunDokter',['id' => $user->id]) }}" class="btn btn-primary btn-block"><b>Edit</b></a>
+                  <a href="{{ route('users.edit_dokter_profile',['id' => $user->id]) }}" class="btn btn-primary btn-block"><b>Edit</b></a>
                 </div>
                 <!-- /.card-body -->
               </div>

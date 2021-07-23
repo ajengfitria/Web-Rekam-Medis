@@ -18,7 +18,7 @@
       <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
         <span class="dropdown-item dropdown-header">Setting</span>
         <div class="dropdown-divider"></div>
-        <a href="{{route('users.showAkun', ['id' => Auth::user()->id])}}" class="dropdown-item">
+        <a href="{{route('users.view_profile', ['id' => Auth::user()->id])}}" class="dropdown-item">
           <i class="fas fa-cog"></i> Setting Akun
         </a>
         <div class="dropdown-divider"></div>

@@ -11,7 +11,7 @@
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="#">Navigasi</a></li>
-          <li class="breadcrumb-item"><a href="{{route('users.showAkun', ['id' => Auth::user()->id])}}">Akun</a></li>
+          <li class="breadcrumb-item"><a href="{{route('users.view_profile', ['id' => Auth::user()->id])}}">Akun</a></li>
           <li class="breadcrumb-item active">Edit</li>
         </ol>
       </div>
@@ -32,7 +32,7 @@
           </div>
           <!-- /.card-header -->
           <!-- form start -->
-          <form method="post" action="{{ route('users.updateAkunDokter',['id' => $user->id]) }}" class="form-horizontal">
+          <form method="post" action="{{ route('users.update_dokter_profile',['id' => $user->id]) }}" class="form-horizontal">
             @method('PUT')
           @csrf
             <div class="card-body">
@@ -98,7 +98,7 @@
             <!-- /.card-body -->
             <div class="card-footer">
               <button type="submit" class="btn btn-info">Edit</button>
-              <a href="{{route('users.showAkun', ['id' => Auth::user()->id])}}" class="btn btn-default float-right">Batal</a>
+              <a href="{{route('users.view_profile', ['id' => Auth::user()->id])}}" class="btn btn-default float-right">Batal</a>
             </div>
             <!-- /.card-footer -->
           </form>
