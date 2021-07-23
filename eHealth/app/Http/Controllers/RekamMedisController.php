@@ -9,9 +9,8 @@ use App\Pasien;
 use App\Dokter;
 use App\User;
 use App\KartuKesehatan;
-use DataTables;
-use DB;
-use Hash;
+use Illuminate\Support\Facades\DB;
+use Yajra\DataTables\Facades\DataTables;
 
 class RekamMedisController extends Controller
 {
@@ -25,7 +24,7 @@ class RekamMedisController extends Controller
         //
         if ($request->ajax()) {
             $data = DB::table('rekam_medis')->get();
-			return Datatables::of($data)
+			return DataTables::of($data)
 				->addIndexColumn()
 				->addColumn('action', function($row){
 					$btn = '

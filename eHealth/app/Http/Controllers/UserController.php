@@ -7,10 +7,10 @@ use App\Http\Controllers\Controller;
 use App\User;
 use App\Dokter;
 use App\Administrator;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
-use DB;
-use Hash;
-use DataTables;
+use Yajra\DataTables\Facades\DataTables;
 
 class UserController extends Controller
 {
@@ -31,7 +31,7 @@ class UserController extends Controller
     {
         if ($request->ajax()) {
 			$data = User::all();
-			return Datatables::of($data)
+			return DataTables::of($data)
 				->addIndexColumn()
 				->addColumn('action', function($row){ 
                     if($row->id != auth()->user()->id){

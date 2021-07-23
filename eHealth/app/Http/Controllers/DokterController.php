@@ -6,9 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Dokter;
 use App\User;
-use DataTables;
-use DB;
-use Hash;
+use Illuminate\Support\Facades\DB;
+use Yajra\DataTables\Facades\DataTables;
 
 class DokterController extends Controller
 {
@@ -26,7 +25,7 @@ class DokterController extends Controller
         //
         if ($request->ajax()) {
             $data = DB::table('dokter')->get();
-			return Datatables::of($data)
+			return DataTables::of($data)
 				->addIndexColumn()
 				->addColumn('action', function($row){
 					$btn = '

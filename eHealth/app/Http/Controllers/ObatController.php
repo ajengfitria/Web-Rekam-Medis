@@ -5,9 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Obat;
-use DataTables;
-use DB;
-use Hash;
+use Illuminate\Support\Facades\DB;
+use Yajra\DataTables\Facades\DataTables;
 
 class ObatController extends Controller
 {
@@ -21,7 +20,7 @@ class ObatController extends Controller
         //
         if ($request->ajax()) {
             $data = DB::table('obat')->get();
-			return Datatables::of($data)
+			return DataTables::of($data)
 				->addIndexColumn()
 				->addColumn('action', function($row){
 					$btn = '

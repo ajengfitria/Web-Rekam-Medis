@@ -5,9 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\KartuKesehatan;
-use DataTables;
-use DB;
-use Hash;
+use Illuminate\Support\Facades\DB;
+use Yajra\DataTables\Facades\DataTables;
 
 class KartuKesehatanController extends Controller
 {
@@ -21,7 +20,7 @@ class KartuKesehatanController extends Controller
         //
         if ($request->ajax()) {
             $data = DB::table('kartu_kes')->get();
-			return Datatables::of($data)
+			return DataTables::of($data)
 				->addIndexColumn()
 				->addColumn('action', function($row){
 					$btn = '
