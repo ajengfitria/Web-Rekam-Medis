@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Dokter;
 use App\User;
 use App\KartuKesehatan;
@@ -28,6 +27,8 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+
+    //method to redirect into home page
     public function index()
     {
         $data['dokter'] = Dokter::count();

@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,20 +29,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('obat','ObatController');
     Route::resource('kartuKes','KartuKesehatanController');
     Route::resource('ruang','RuangController');
-    
-    //
-    Route::get('/akun/{id}', 'UserController@showAkun')->name('users.showAkun');
-
-    // Route::get('/akun/edit/{id}', 'UserController@editAkunAdmin')->name('user.editAkun');
-    // Route::get('/akun/edit/{id}', 'UserController@editAkunAdmin')->name('users.editAkunAdmin');  
-    Route::put('/akun/updateAkun/{id}','UserController@updateAkunAdmin')->name('users.updateAkunAdmin');
-
-    Route::get('/akun/editAkun/{id}', 'UserController@editAkunAdmin')->name('users.editAkun');
-    Route::get('/akun/edit/{id}', 'UserController@editAkunDokter')->name('users.editAkunDokter');
-    Route::put('/akun/update/{id}','UserController@updateAkunDokter')->name('users.updateAkunDokter');
-    
-    
-    
+     
     // Obat management
     Route::post('/obat/input','ObatController@store')->name('obat.store');
     Route::get('/obat/delete/{id}', 'ObatController@destroy')->name('obat.destroy');
@@ -80,11 +68,16 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/dokter/delete/{id}', 'DokterController@destroy')->name('dokter.destroy');
     Route::get('/dokter/edit/{id}', 'DokterController@edit')->name('dokter.edit');
     Route::put('/dokter/update/{id}','DokterController@update')->name('dokter.update');
+    Route::get('/akun/edit/{id}', 'UserController@edit_dokter_profile')->name('users.edit_dokter_profile');
+    Route::put('/akun/update/{id}','UserController@update_dokter_profile')->name('users.update_dokter_profile');
     
     // Users management
     Route::post('/users/input', 'UserController@store')->name('users.store');
     Route::get('/users/delete/{id}', 'UserController@destroy')->name('users.destroy');
     Route::get('/users/edit/{id}', 'UserController@edit')->name('users.edit');
     Route::put('/users/update/{id}','UserController@update')->name('users.update');
+    Route::get('/akun/{id}', 'UserController@view_profile')->name('users.view_profile');
+    Route::put('/akun/updateAkun/{id}','UserController@update_admin_profile')->name('users.update_admin_profile');
+    Route::get('/akun/editAkun/{id}', 'UserController@edit_admin_profile')->name('users.editAkun');
     
 });

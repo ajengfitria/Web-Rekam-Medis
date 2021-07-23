@@ -11,130 +11,89 @@ use Yajra\DataTables\Facades\DataTables;
 class ObatController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+    //method for redirect into obat page
     public function index(Request $request)
     {
         //
         if ($request->ajax()) {
             $data = DB::table('obat')->get();
-			return DataTables::of($data)
-				->addIndexColumn()
-				->addColumn('action', function($row){
-					$btn = '
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action', function ($row) {
+                    $btn = '
 							<div class="text-center">
 								<div class="btn-group">
-									<a href="'.route('obat.edit', ['id' => $row->id]).'" class="edit btn btn-success btn-sm"> Edit </a>
-									<a href="'.route('obat.destroy', ['id' => $row->id]).'" class="btn btn-danger btn-sm"> Hapus </a>
+									<a href="' . route('obat.edit', ['id' => $row->id]) . '" class="edit btn btn-success btn-sm"> Edit </a>
+									<a href="' . route('obat.destroy', ['id' => $row->id]) . '" class="btn btn-danger btn-sm"> Hapus </a>
 								</div>
 							</div>
 							';
-					return $btn;
-				})
-				->rawColumns(['action']) 
-				->make(true);
-		}
+                    return $btn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
         return view('obat');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    //method for redirect into create obat page
     public function create()
     {
-        //
         return view('obatAdd');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    //method for store obat data into database
     public function store(Request $request)
     {
-        //
-        $request->validate([
-    		'nama' => '',
-    		'kategori' => '',
-    		'stok' => '',
-        ]);
+        $obat = new Obat();
+        $obat->nama = $request->nama;
+        $obat->kategori = $request->kategori;
+        $obat->stok = $request->stok;
+        $obat->save();
 
-    	$obat = new Obat();
-    	$obat->nama = $request->nama;
-    	$obat->kategori = $request->kategori;
-    	$obat->stok = $request->stok;
-    	$obat->save();
-
-    	return redirect(route('obat.index'))->with('message','Data Added Successfully');
+        return redirect(route('obat.index'))->with('message', 'Data Added Successfully');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    //method for redirect into edit obat page
     public function edit($id)
     {
-        //
         $data['obat'] = Obat::find($id);
-    
-        return view('obatEdit',$data);
+
+        return view('obatEdit', $data);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    //method for update obat data into database
     public function update(Request $request, $id)
     {
-        //
-        $this->validate($request, [
-            'nama' => '',
-    		'kategori' => '',
-    		'stok' => '',
-        ]);
-    
         $input = $request->all();
 
         $obat = Obat::find($id);
         $obat->update($input);
-    
+
         return redirect()->route('obat.index')
-                        ->with('success','Obat updated successfully');
+            ->with('success', 'Obat updated successfully');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    //method for delete obat data from database
     public function destroy($id)
     {
-        //
         Obat::where('id', $id)->delete();
-            return redirect()->route('obat.index')
-            ->with('success','User deleted successfully');
+        return redirect()->route('obat.index')
+            ->with('success', 'User deleted successfully');
     }
 }
