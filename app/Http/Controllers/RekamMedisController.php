@@ -52,7 +52,7 @@ class RekamMedisController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
-        return view('rekamMedis');
+        return view('rekam_medis.rekamMedis');
     }
 
     //method for redirect into create rekam medis page
@@ -60,7 +60,7 @@ class RekamMedisController extends Controller
     {
         $data['pasien'] = Pasien::all();
 
-        return view('rekamMedisAdd', $data);
+        return view('rekam_medis.rekamMedisAdd', $data);
     }
 
     //method for store rekam medis data into database
@@ -98,7 +98,7 @@ class RekamMedisController extends Controller
         $kartuId = $kartuId['id_kartu'];
         $data['kartuKes'] = KartuKesehatan::find($kartuId);
 
-        return view('rekamMedisDetail', $data);
+        return view('rekam_medis.rekamMedisDetail', $data);
     }
 
     //method for redirect into rekam medis edit page
@@ -107,7 +107,7 @@ class RekamMedisController extends Controller
         $data['rekamMedis'] = RekamMedis::find($id);
         $data['pasien'] = Pasien::all();
 
-        return view('rekamMedisEdit', $data);
+        return view('rekam_medis.rekamMedisEdit', $data);
     }
 
     //method for update rekam medis data into database

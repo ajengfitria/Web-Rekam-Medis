@@ -41,14 +41,14 @@ class RuangController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
-        return view('ruang');
+        return view('ruang_ruang');
     }
 
     //method for redirect into create ruang page
     public function create()
     {
         $data['status'] = ['Tersedia', 'Penuh'];
-        return view('ruangAdd', $data);
+        return view('ruang_ruangAdd', $data);
     }
 
     //method for store ruang data into database
@@ -70,7 +70,7 @@ class RuangController extends Controller
         $data['status'] = ['Tersedia', 'Penuh'];
         $data['ruang'] = Ruang::find($id);
 
-        return view('ruangEdit', $data);
+        return view('ruang_ruangEdit', $data);
     }
 
     //method for update ruang data into database

@@ -53,7 +53,7 @@ class PasienController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
-        return view('pasien');
+        return view('pasien.pasien');
     }
 
     //method for redirect into create pasien page
@@ -63,7 +63,7 @@ class PasienController extends Controller
         $data['jenkel'] = ['Pria', 'Wanita'];
         $data['kartuKes'] = KartuKesehatan::all();
 
-        return view('pasienAdd', $data);
+        return view('pasien.pasienAdd', $data);
     }
 
     //method for store pasien data into database
@@ -114,7 +114,7 @@ class PasienController extends Controller
         }
 
 
-        return view('pasienDetail', $data);
+        return view('pasien.pasienDetail', $data);
     }
 
     //method for redirect into pasien edit page
@@ -124,7 +124,7 @@ class PasienController extends Controller
         $data['jenkel'] = ['Pria', 'Wanita'];
         $data['kartuKes'] = KartuKesehatan::all();
 
-        return view('pasienEdit', $data);
+        return view('pasien.pasienEdit', $data);
     }
 
     //method for update pasien data into database

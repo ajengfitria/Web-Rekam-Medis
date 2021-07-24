@@ -66,14 +66,14 @@ class UserController extends Controller
                 ->rawColumns(['action', 'roles'])
                 ->make(true);
         }
-        return view('users');
+        return view('users.users');
     }
 
     //method for redirect into create user page
     public function create()
     {
         $data['role'] = Role::all();
-        return view('usersAdd', $data);
+        return view('users.usersAdd', $data);
     }
 
     //method for store user data into databsae
@@ -131,7 +131,7 @@ class UserController extends Controller
         $data['role'] = Role::all();
         $data['user'] = User::find($id);
 
-        return view('usersEdit', $data);
+        return view('users.usersEdit', $data);
     }
 
     //method for update user data into databse
@@ -205,13 +205,13 @@ class UserController extends Controller
             $adminId = $adminGetId[0];
             $adminId = $adminId['id'];
             $data['admin'] = Administrator::find($adminId);
-            return view('showAkun', $data);
+            return view('users.showAkun', $data);
         } else {
             $dokterGetId = Dokter::select('id')->where('id_user', $id)->limit(1)->get();
             $dokterId = $dokterGetId[0];
             $dokterId = $dokterId['id'];
             $data['dokter'] = Dokter::find($dokterId);
-            return view('showAkun', $data);
+            return view('users.showAkun', $data);
         }
     }
 
@@ -228,7 +228,7 @@ class UserController extends Controller
         $data['admin'] = Administrator::find($adminId);
         $data['jenkel'] = ['Pria', 'Wanita'];
 
-        return view('usersEditAkunAdmin', $data);
+        return view('users.usersEditAkunAdmin', $data);
     }
 
     //method for update admin data into database
@@ -284,7 +284,7 @@ class UserController extends Controller
         $data['dokter'] = Dokter::find($dokterId);
         $data['jenkel'] = ['Pria', 'Wanita'];
 
-        return view('usersEditAkunDokter', $data);
+        return view('users.usersEditAkunDokter', $data);
     }
 
     //method for update admin data into database
