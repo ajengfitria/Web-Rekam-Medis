@@ -66,9 +66,17 @@ class RekamMedisController extends Controller
     //method for store rekam medis data into database
     public function store(Request $request)
     {
+        $request->validate([
+            'id_pasien' => 'required',
+            'id_dokter' => 'required',
+            'jenis_pelayanan' => 'required',
+            'keluhan' => 'required',
+            'diagnosa' => 'required',
+            'tindakan' => 'required',
+        ]);
         $rekamMedis = new RekamMedis();
         $rekamMedis->id_pasien = $request->id_pasien;
-        $rekamMedis->id_dokter = auth()->user()->id;
+        $rekamMedis->id_dokter = auth()->user()->id; 
         $rekamMedis->jenis_pelayanan = $request->jenis_pelayanan;
         $rekamMedis->keluhan = $request->keluhan;
         $rekamMedis->diagnosa = $request->diagnosa;
@@ -82,7 +90,7 @@ class RekamMedisController extends Controller
     public function show($id)
     {
         $data['rekamMedis'] = RekamMedis::find($id);
-
+        
         $pasienGetId = RekamMedis::select('id_pasien')->where('id', $id)->limit(1)->get();
         $pasienId = $pasienGetId[0];
         $pasienId = $pasienId['id_pasien'];
@@ -92,13 +100,14 @@ class RekamMedisController extends Controller
         $dokterId = $dokterGetId[0];
         $dokterId = $dokterId['id_dokter'];
         $data['dokter'] = User::find($dokterId);
-
+        
         $kartuGetId = Pasien::select('id_kartu')->where('id', $pasienId)->limit(1)->get();
         $kartuId = $kartuGetId[0];
         $kartuId = $kartuId['id_kartu'];
         $data['kartuKes'] = KartuKesehatan::find($kartuId);
-
-        return view('rekam_medis.rekamMedisDetail', $data);
+        
+        
+        return view('rekam_medis.rekamMedisDetail', $data, dd($data));
     }
 
     //method for redirect into rekam medis edit page
