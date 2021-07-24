@@ -32,6 +32,8 @@ Website ini memiliki 2 sisi pengguna yaitu administrator dan dokter. Berikut mer
 ## Use Case
 ![usecase serkom](https://user-images.githubusercontent.com/30403009/126858249-bf60018f-804c-4e57-be3c-7eb33db10732.png)
 
+## ERD
+![erd serkom](https://user-images.githubusercontent.com/30403009/126858326-d07dc90b-2f4a-4e1e-8b6f-ea45ba97c67e.png)
 
 ## Teknologi Yang Digunakan
 
