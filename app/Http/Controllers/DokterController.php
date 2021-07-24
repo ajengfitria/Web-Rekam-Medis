@@ -49,7 +49,7 @@ class DokterController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
-        return view('dokter');
+        return view('users.dokter');
     }
 
     
@@ -59,7 +59,7 @@ class DokterController extends Controller
         $data['dokter'] = Dokter::find($id);
         $data['jenkel'] = ['Pria', 'Wanita'];
 
-        return view('dokterEdit', $data);
+        return view('userdokts.erEdit', $data);
     }
 
     //method to update data into database

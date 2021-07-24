@@ -48,13 +48,13 @@ class KartuKesehatanController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
-        return view('kartuKes');
+        return view('kartu_kesehatan.kartuKes');
     }
 
     //method to redirect into create page
     public function create()
     {
-        return view('kartuKesAdd');
+        return view('kartu_kesehatan.kartuKesAdd');
     }
 
     //method for store data into database
@@ -75,7 +75,7 @@ class KartuKesehatanController extends Controller
     {
         $data['kartuKes'] = KartuKesehatan::find($id);
 
-        return view('kartuKesEdit', $data);
+        return view('kartu_kesehatan.kartuKesEdit', $data);
     }
 
     //method for update data into database

@@ -48,13 +48,13 @@ class ObatController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
-        return view('obat');
+        return view('obat.obat');
     }
 
     //method for redirect into create obat page
     public function create()
     {
-        return view('obatAdd');
+        return view('obat.obatAdd');
     }
 
     //method for store obat data into database
@@ -74,7 +74,7 @@ class ObatController extends Controller
     {
         $data['obat'] = Obat::find($id);
 
-        return view('obatEdit', $data);
+        return view('obat.obatEdit', $data);
     }
 
     //method for update obat data into database
