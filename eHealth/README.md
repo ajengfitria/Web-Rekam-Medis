@@ -29,6 +29,9 @@ Website ini memiliki 2 sisi pengguna yaitu administrator dan dokter. Berikut mer
     
 	-   Kelola data ruang rawat inap (melihat, menambah, mengubah dan menghapus)
 	
+## Use Case
+![usecase serkom](https://user-images.githubusercontent.com/30403009/126858249-bf60018f-804c-4e57-be3c-7eb33db10732.png)
+
 
 ## Teknologi Yang Digunakan
 
